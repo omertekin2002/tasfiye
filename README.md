@@ -20,11 +20,14 @@ counts as an allocation source.
 DESIGN.md                       design system for the UI
 README.md                       this file
 scripts/
-  fetch_allocation_reports.py   the crawler that produced everything below
+  fetch_allocation_reports.py   fetches the reports from KAP
+  extract_fund_data.py          PDFs -> data/funds.json
 portfolio allocation/
   INDEX.csv                     ← start here: one row per fund
   <CODE>_*.pdf                  47 allocation reports
   _manifest/                    provenance and crawler state
+data/funds.json                 extracted figures, read by the UI
+ui/                             the tracker page (index.html, styles.css, app.js)
 ```
 
 ---
@@ -124,13 +127,6 @@ disclosures as one document.
 
 ---
 
-## Status
-
-Groundwork is complete; the UI is not built yet. The liquidation values themselves are not
-here — per the SPK decision, those come from the appointed custodians, not from KAP.
-
----
-
 ## `ui/` — the tracker
 
 ```bash
@@ -163,3 +159,13 @@ silently wrong:
 
 Every row is cross-checked with `NAV ≈ unitPrice × shares` (1% tolerance) and carries a
 `verified` flag; all 47 currently pass.
+
+---
+
+## Status
+
+The ledger is built and reads live from the extracted data. The liquidation values
+themselves are still outstanding: per the SPK decision they are set by the appointed
+custodian banks and are not published on KAP, so every fund shows *Beklemede* until
+those figures are available. Wiring them in means adding a `liquidationValue` to each
+row in `data/funds.json`; the UI already renders it the moment it is not null.
