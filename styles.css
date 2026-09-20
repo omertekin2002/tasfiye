@@ -23,6 +23,10 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* The phone breakpoint below re-declares display on every table element, which would
+   otherwise beat the UA stylesheet and un-hide filtered-out rows. */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -69,6 +73,20 @@ h1 {
 .lede a { color: var(--primary); text-decoration: none; }
 .lede a:hover { text-decoration: underline; }
 
+/* ---------- tabs ---------- */
+.tabs {
+  display: flex; gap: var(--s-xl);
+  border-bottom: 1px solid var(--hairline);
+}
+.tab {
+  font: inherit; font-size: 14px; font-weight: 400; color: var(--ink-mute);
+  background: none; border: 0; border-bottom: 2px solid transparent;
+  padding: var(--s-md) 0; margin-bottom: -1px; cursor: pointer;
+}
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--primary); }
+.tab:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
 /* ---------- headline total (sits ABOVE the list, per the adaptation) ---------- */
 .totals {
   display: flex; flex-wrap: wrap; gap: var(--s-huge);
@@ -99,6 +117,20 @@ select {
   border: 1px solid #a8c3de; border-radius: var(--r-sm); padding: var(--s-sm) var(--s-md);
 }
 .count { font-size: 13px; color: var(--ink-mute); margin-left: auto; font-feature-settings: "ss01","tnum"; }
+
+/* class filter, the holdings tab's equivalent of the founder select */
+.chips { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
+.chip {
+  font: inherit; font-size: 13px; color: var(--ink-secondary);
+  background: var(--canvas); border: 1px solid #a8c3de; border-radius: var(--r-pill);
+  padding: 6px var(--s-md); cursor: pointer;
+}
+.chip:hover { border-color: var(--primary); }
+.chip[aria-pressed="true"] {
+  background: var(--primary-subdued); border-color: var(--primary-subdued);
+  color: var(--primary-deep);
+}
+.chip:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
 
 /* ---------- ledger ---------- */
 table { width: 100%; border-collapse: collapse; }
@@ -158,6 +190,38 @@ tr.detail > td { padding: 0 var(--s-md) var(--s-lg); background: var(--canvas-so
 
 .empty { padding: var(--s-huge) 0; text-align: center; color: var(--ink-mute); }
 
+/* ---------- holdings: one hairline table per asset class ---------- */
+.hsec { margin-top: var(--s-xxl); }
+.hsec:first-child { margin-top: var(--s-lg); }
+.hhead {
+  display: flex; align-items: baseline; gap: var(--s-md); flex-wrap: wrap;
+  padding-bottom: var(--s-sm); border-bottom: 1px solid var(--ink);
+}
+.hhead h2 {
+  margin: 0; font-size: 13px; font-weight: 400;
+  letter-spacing: .1px; text-transform: uppercase;
+}
+.hhead .n { font-size: 12px; color: var(--ink-mute); font-feature-settings: "ss01","tnum"; }
+.hhead .gloss { flex-basis: 100%; font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+
+.hsec tbody tr:hover { background: var(--canvas-soft); }
+.hsec td { font-size: 14px; vertical-align: top; }
+.hsec .name { overflow-wrap: anywhere; }
+.alt { display: block; font-size: 12px; color: var(--ink-mute); margin-top: 3px; }
+
+/* which of the 47 funds hold it — codes, not amounts */
+.holders { display: flex; gap: 3px; flex-wrap: wrap; max-width: 34ch; }
+.holders span {
+  font-size: 11px; letter-spacing: .2px; color: var(--ink-secondary);
+  background: var(--canvas-soft); border: 1px solid var(--hairline);
+  border-radius: var(--r-xs); padding: 1px 5px;
+}
+.kind {
+  display: inline-block; font-size: 11px; white-space: nowrap;
+  background: var(--canvas-cream); color: var(--lemon);
+  border-radius: var(--r-xs); padding: 1px 6px; margin: 0 3px 2px 0;
+}
+
 footer {
   border-top: 1px solid var(--hairline); margin-top: var(--s-huge);
   padding: var(--s-xxl) 0 var(--s-huge);
@@ -200,4 +264,24 @@ footer p { margin: 0 0 var(--s-sm); max-width: 78ch; }
   input[type="search"] { min-width: 0; flex: 1 1 100%; }
   .count { margin-left: 0; }
   h1 { font-size: 28px; }
+
+  .tabs { gap: var(--s-lg); }
+
+  /* four tallies stacked one per row push the list off the first screen */
+  #hTally { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
+  #hTally .total-block { min-width: 0; }
+  #hTally .total-value { font-size: 22px; }
+
+  .hsec tbody tr { padding: var(--s-lg) 0; }
+  .hsec tbody td { padding: 0; }
+  .hsec tbody td[data-label] {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: var(--s-lg); padding-top: var(--s-sm);
+  }
+  .hsec tbody td[data-label]::before {
+    content: attr(data-label);
+    font-size: 10px; letter-spacing: .1px; text-transform: uppercase;
+    color: var(--ink-mute); flex: none;
+  }
+  .holders { max-width: none; justify-content: flex-end; }
 }

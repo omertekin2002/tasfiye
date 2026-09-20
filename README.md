@@ -22,11 +22,14 @@ README.md                       this file
 scripts/
   fetch_allocation_reports.py   fetches the reports from KAP
   extract_fund_data.py          PDFs -> data/funds.json
+  extract_holdings.py           PDFs -> data/holdings.json (every security held)
 portfolio allocation/
   INDEX.csv                     ← start here: one row per fund
   <CODE>_*.pdf                  47 allocation reports
   _manifest/                    provenance and crawler state
 data/funds.json                 extracted figures, read by the UI
+data/holdings.json              every individual security held, by fund
+data/holdings.csv               same, flat
 index.html, styles.css, app.js  the tracker page, served at the site root
 ui/index.html                   redirect, keeps the old /ui/ link working
 ```
@@ -139,10 +142,19 @@ python3 -m http.server 8777              # then open http://localhost:8777/
 directory beginning with an underscore — that would make `portfolio allocation/_manifest/`
 unreachable on the live site.
 
-A single static page built to `DESIGN.md`: a ledger of the 47 funds, sortable, filterable
-by founder, with a per-row detail panel showing the portfolio breakdown as text and links
-back to the KAP filing and the source PDF. No charts — the brief calls for values, not
-performance history.
+A single static page built to `DESIGN.md`, in two tabs. No charts — the brief calls for
+values, not performance history.
+
+**Fonlar** — a ledger of the 47 funds, sortable, filterable by founder, with a per-row
+detail panel showing the portfolio breakdown as text and links back to the KAP filing and
+the source PDF.
+
+**Portföy Bileşenleri** — what those funds actually hold, from `data/holdings.json`: one
+hairline table per asset class, searchable across issuer, ticker, fund code and fund name,
+with a class filter. Entries are collapsed to one row per issuer and carry **no amounts** —
+only the instrument types, how many separate issues there are, and which of the 47 funds
+hold it. `holdings.json` is fetched lazily the first time the tab is opened, so the fund
+ledger costs nothing extra.
 
 The **Tasfiye Değeri** column is an em-dash and a *Beklemede* pill for every fund, because
 liquidation amounts are set by the custodian banks and are not published on KAP. The
@@ -164,6 +176,79 @@ silently wrong:
 
 Every row is cross-checked with `NAV ≈ unitPrice × shares` (1% tolerance) and carries a
 `verified` flag; all 47 currently pass.
+
+---
+
+## `scripts/extract_holdings.py`
+
+Reads the same 47 PDFs and writes `data/holdings.json` — **1,061 individual holdings**,
+one row per security per fund. Scope is the four asset classes that are a claim on an
+issuer; repo, derivatives, deposits, participation accounts, precious metals, FX and
+VİOP collateral are dropped. **No amounts**: this answers what is held, not how much.
+
+| class | holdings | distinct |
+|---|---|---|
+| equities | 630 | 169 tickers |
+| debt securities | 311 | 62 issuers |
+| lease certificates (sukuk) | 82 | 14 issuers |
+| units in other funds | 38 | 26 funds |
+
+Unlike `extract_fund_data.py`, which only needs labelled figures from the summary block,
+this one has to read the portfolio table itself — and that table is not a table. It is
+read from `pdftotext -bbox-layout` word coordinates, because column geometry is the only
+thing separating a ticker from an issuer name.
+
+Three problems worth knowing about before touching this code:
+
+1. **Issuer names wrap mid-word.** The Infleks reports give the issuer a 39pt column and
+   break inside words: `FAKTORİN` / `G`, `GAYRİMEN` / `KUL`. Geometry cannot tell that
+   apart from an ordinary wrap (`SANAYİ VE` / `TİCARET`) — both lines fill the column.
+   The fix is lexical: a mid-word break leaves a non-word on *both* sides, so the two
+   lines are glued only when neither side is a known word. The vocabulary is harvested
+   from the reports themselves, using the one thing wrapping guarantees — a break can
+   only split the *last* token of a line, so every other token is a whole word.
+2. **Headings and continuation lines look alike.** Both are short, left-aligned and
+   carry no figures. They are told apart by position: a heading only ever follows a
+   `GRUP TOPLAMI`, a continuation only ever follows a holding.
+3. **Two layouts, and the second is not a variant.** 8 funds file an Excel-generated
+   report with lettered sections (`A) HİSSE SENETLERİ` … `N) KATILMA BELGELERİ`) and
+   clean word-wrapped names. It gets its own parser; the layout is auto-detected.
+
+Issuers are spelled differently from one report to the next (`LIDER FAKTORING A.Ş` /
+`LİDER FAKTORİNG A.Ş.`), so rows are merged on the ISIN mnemonic rather than on the text,
+and the other spellings are kept in `issuerAlt`. Two cases go further than spelling:
+
+- **A misprint the ISIN contradicts** is dropped, not recorded as a variant. `MISPRINT`
+  holds the two known ones: PRY files `TRFKYTRE2613` — a Kayatur Filo Kiralama bill —
+  under `HAZİNE`, and PPT files `TRFPNSTA2630` — Pınar Süt paper — under
+  `PINAR ENTEGRE ET VE UN SANAYI A.Ş`. The ISIN wins in both.
+- **A sukuk naming the originator is not a misprint.** Some reports name the asset-leasing
+  company (`HEDEF VARLIK KİRALAMA A.Ş.`) and others the company the certificates are
+  raised for (`HAVER FARMA İLAÇ A.Ş`). Both are legitimate readings, so both are kept.
+
+**Verification.** Extracted holdings are cross-checked against the allocation percentages
+in `data/funds.json`: for each fund and class, a non-zero percentage must coincide with at
+least one holding. 176 of 188 checks agree, and all 12 exceptions are accounted for — see
+*Known gaps in `extract_fund_data.py`* below. Row counts were also checked directly
+against the PDFs for both layouts (BTJ 5 equities + 1 fund unit; TLY 54 equity lots).
+
+**Not resolved.** 12 of the 26 held funds are identified only by code and founder
+(`T3B`, `THF`, `TMV`, `HMV`, `MTL`, `ABG`, `BAC`, `GCD`, `KHD`, `KVR`, `LAI`, `PFS`).
+Most reports print a fund unit as a bare code; those 12 are not among the 47 in
+`_manifest/funds.json`, and KAP exposes no code→name endpoint (its fund directory is an
+SPA, and TEFAS is bot-protected).
+
+### Known gaps in `extract_fund_data.py`
+
+Found while cross-checking; they affect `data/funds.json`, not `data/holdings.json`:
+
+- **Turnover read as allocation.** `Hazine Bonosu` and `Devlet Tahvili` appear both under
+  `F-)…Menkul Kıymetler Yüzdesi` and under `G-)…Portföy Devir Hızı`. `allocation()` takes
+  the max across both, so HPH, PKM and TLV carry a bond allocation they do not have —
+  each holds lease certificates only.
+- **Excel-layout labels are missed.** Those reports say `Katılma Belgesi` (not
+  `Yatırım Fonu`) and `Finansman Bonosu` (not `Finansman Bonusu`), so AP5, BSH, BTJ, DFI,
+  KLH, SNY report 0% in funds they demonstrably hold.
 
 ---
 

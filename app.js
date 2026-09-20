@@ -143,4 +143,192 @@
       emptyEl.hidden = false;
       emptyEl.textContent = "Fon verisi yüklenemedi (" + err.message + ").";
     });
+
+  /* ════════════════ Portföy Bileşenleri ════════════════
+     What the 47 funds hold, rather than what they are worth. Rows carry no
+     amounts by design — only which issuer, and which funds are exposed to it. */
+
+  const CLASSES = [
+    { id: "stock", title: "Hisse Senetleri", unit: "ayrı hisse",
+      gloss: "Raporlarda basıldığı hâliyle BIST kodu ve şirket unvanı.",
+      cols: ["Kod", "Şirket", "Fon", "Tutan fonlar"] },
+    { id: "bond", title: "Borçlanma Senetleri", unit: "ayrı ihraççı",
+      gloss: "Tahvil, bono, finansman bonosu ve varlığa dayalı menkul kıymet ihraççıları.",
+      cols: ["İhraççı", "Tür", "İhraç", "Fon", "Tutan fonlar"] },
+    { id: "sukuk", title: "Kira Sertifikaları", unit: "ayrı ihraççı",
+      gloss: "Sukuk ihraççıları. Bir rapor varlık kiralama şirketini, bir diğeri kaynak kuruluşu yazabilir.",
+      cols: ["İhraççı", "Tür", "İhraç", "Fon", "Tutan fonlar"] },
+    { id: "fund", title: "Fon Katılma Payları", unit: "ayrı fon",
+      gloss: "Diğer yatırım fonlarındaki paylar.",
+      cols: ["Kod", "Fon adı", "Kurucu", "Fon", "Tutan fonlar"] },
+  ];
+
+  const TYPE_TR = {
+    bill: "Bono", corporate: "Özel sektör tahvili", government: "Devlet tahvili",
+    "finance bill": "Finansman bonosu", "bank bill": "Banka bonosu",
+    "asset-backed": "Varlığa dayalı", foreign: "Yabancı", "FX-indexed": "Dövize endeksli",
+    public: "Kamu kesimi", "securities lending": "Ödünç alma",
+    "short position": "Açığa satış", ETF: "Borsa yatırım fonu",
+  };
+
+  const esc = (v) => String(v ?? "").replace(/[&<>"]/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const DASH = '<span class="dash">—</span>';
+
+  let groups = null;            // { stock: [...], bond: [...], … }
+  let hFilter = "all";
+  const hqEl = $("#hq"), hCountEl = $("#hCount"), hSecEl = $("#hSections");
+
+  // One row per security, 47 reports deep — collapse to one entry per issuer.
+  function group(rows) {
+    const by = new Map();
+    for (const r of rows) {
+      const key = r.assetClass === "stock" || r.assetClass === "fund"
+        ? r.security : r.issuerCanonical;
+      if (!key) continue;
+      const id = r.assetClass + "\u0000" + key;
+      let e = by.get(id);
+      if (!e) by.set(id, e = { cls: r.assetClass, key, funds: new Set(),
+                               isins: new Set(), types: new Set(), alt: new Set() });
+      e.funds.add(r.fund);
+      if (r.isin) e.isins.add(r.isin);
+      if (r.type) e.types.add(r.type);
+      for (const a of r.issuerAlt || []) e.alt.add(a);
+      if (r.assetClass === "fund") { e.name = e.name || r.fundName; e.mgr = e.mgr || r.issuer; }
+      else if (r.assetClass === "stock") e.name = e.name || r.issuerCanonical;
+    }
+    const out = {};
+    for (const c of CLASSES) out[c.id] = [];
+    for (const e of by.values()) {
+      e.haystack = [e.key, e.name, e.mgr, ...e.alt, ...e.funds,
+                    ...[...e.types].map((t) => TYPE_TR[t] || t)]
+        .filter(Boolean).join(" ").toLocaleLowerCase("tr-TR");
+      out[e.cls].push(e);
+    }
+    // most widely held first — that is the exposure story
+    for (const k of Object.keys(out)) {
+      out[k].sort((a, b) => b.funds.size - a.funds.size || a.key.localeCompare(b.key, "tr"));
+    }
+    return out;
+  }
+
+  const holders = (f) =>
+    `<div class="holders">${[...f].sort().map((x) => `<span>${esc(x)}</span>`).join("")}</div>`;
+  const kinds = (t) => [...t].map((x) =>
+    `<span class="kind">${esc(TYPE_TR[x] || x)}</span>`).join("") || DASH;
+
+  function cells(cls, e) {
+    if (cls === "stock") return `
+      <td class="code" data-label="Kod">${esc(e.key)}</td>
+      <td class="name" data-label="Şirket">${e.name ? esc(e.name) : DASH}</td>
+      <td class="num" data-label="Fon">${e.funds.size}</td>
+      <td data-label="Tutan fonlar">${holders(e.funds)}</td>`;
+    if (cls === "fund") return `
+      <td class="code" data-label="Kod">${esc(e.key)}</td>
+      <td class="name" data-label="Fon adı">${e.name ? esc(e.name)
+        : `${DASH}<span class="alt">adı raporda basılmamış</span>`}</td>
+      <td class="founder" data-label="Kurucu">${e.mgr ? esc(e.mgr) : DASH}</td>
+      <td class="num" data-label="Fon">${e.funds.size}</td>
+      <td data-label="Tutan fonlar">${holders(e.funds)}</td>`;
+    return `
+      <td class="name" data-label="İhraççı">${esc(e.key)}${e.alt.size
+        ? `<span class="alt">raporlarda ayrıca: ${[...e.alt].sort().map(esc).join("; ")}</span>` : ""}</td>
+      <td data-label="Tür">${kinds(e.types)}</td>
+      <td class="num" data-label="İhraç">${e.isins.size || DASH}</td>
+      <td class="num" data-label="Fon">${e.funds.size}</td>
+      <td data-label="Tutan fonlar">${holders(e.funds)}</td>`;
+  }
+
+  function buildHoldings() {
+    $("#hTally").innerHTML = CLASSES.map((c) => `
+      <div class="total-block">
+        <div class="eyebrow">${c.title}</div>
+        <div class="total-value">${groups[c.id].length}</div>
+        <div class="asof">${c.unit}</div>
+      </div>`).join("");
+
+    $("#hChips").innerHTML = [["all", "Tümü"], ...CLASSES.map((c) => [c.id, c.title])]
+      .map(([v, t], i) =>
+        `<button type="button" class="chip" data-f="${v}" aria-pressed="${i === 0}">${t}</button>`)
+      .join("");
+
+    hSecEl.innerHTML = CLASSES.map((c) => `
+      <section class="hsec" data-cls="${c.id}">
+        <div class="hhead">
+          <h2>${c.title}</h2><span class="n"></span>
+          <span class="gloss">${c.gloss}</span>
+        </div>
+        <table>
+          <thead><tr>${c.cols.map((h) =>
+            `<th${h === "Fon" || h === "İhraç" ? ' class="r"' : ""}>${h}</th>`).join("")}</tr></thead>
+          <tbody>${groups[c.id].map((e) =>
+            `<tr data-h="${esc(e.haystack)}">${cells(c.id, e)}</tr>`).join("")}</tbody>
+        </table>
+        <div class="empty" hidden>Eşleşen kayıt yok.</div>
+      </section>`).join("");
+
+    hqEl.addEventListener("input", filterHoldings);
+    $("#hChips").addEventListener("click", (ev) => {
+      const b = ev.target.closest(".chip");
+      if (!b) return;
+      hFilter = b.dataset.f;
+      $("#hChips").querySelectorAll(".chip").forEach((c) =>
+        c.setAttribute("aria-pressed", String(c === b)));
+      filterHoldings();
+    });
+    filterHoldings();
+  }
+
+  function filterHoldings() {
+    const q = hqEl.value.trim().toLocaleLowerCase("tr-TR");
+    let shown = 0, all = 0;
+    hSecEl.querySelectorAll("section.hsec").forEach((sec) => {
+      const on = hFilter === "all" || hFilter === sec.dataset.cls;
+      sec.hidden = !on;
+      let n = 0;
+      sec.querySelectorAll("tbody tr").forEach((tr) => {
+        all++;
+        const hit = on && (!q || tr.dataset.h.includes(q));
+        tr.hidden = !hit;
+        if (hit) n++;
+      });
+      sec.querySelector(".n").textContent = n;
+      sec.querySelector("table").hidden = n === 0;   // no column headers over nothing
+      sec.querySelector(".empty").hidden = n > 0;
+      shown += n;
+    });
+    hCountEl.textContent = `${shown} / ${all} bileşen`;
+  }
+
+  /* ---------- tabs ---------- */
+  const tabs = [...document.querySelectorAll(".tab")];
+  function showTab(btn) {
+    tabs.forEach((t) => {
+      const on = t === btn;
+      t.setAttribute("aria-selected", String(on));
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    $("#notes-funds").hidden = btn.id !== "tab-funds";
+    $("#notes-holdings").hidden = btn.id !== "tab-holdings";
+    if (btn.id === "tab-holdings" && !groups) loadHoldings();
+  }
+  tabs.forEach((t) => t.addEventListener("click", () => showTab(t)));
+  tabs.forEach((t, i) => t.addEventListener("keydown", (e) => {
+    const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    if (!d) return;
+    e.preventDefault();
+    const next = tabs[(i + d + tabs.length) % tabs.length];
+    next.focus(); showTab(next);
+  }));
+
+  function loadHoldings() {
+    hSecEl.innerHTML = '<div class="empty">Yükleniyor…</div>';
+    fetch("data/holdings.json")
+      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((d) => { groups = group(d); buildHoldings(); })
+      .catch((err) => {
+        hSecEl.innerHTML =
+          '<div class="empty">Bileşen verisi yüklenemedi (' + esc(err.message) + ").</div>";
+      });
+  }
 })();

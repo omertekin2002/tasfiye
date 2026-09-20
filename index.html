@@ -24,59 +24,103 @@
 
 <main class="wrap">
 
-  <section class="totals">
-    <div class="total-block">
-      <div class="eyebrow">Toplam Tasfiye Değeri</div>
-      <div class="total-value pending" id="totalLiq">—</div>
-      <div class="asof">Saklayıcı bankalarca henüz açıklanmadı</div>
+  <nav class="tabs" role="tablist" aria-label="Görünüm">
+    <button type="button" class="tab" role="tab" id="tab-funds"
+            aria-controls="panel-funds" aria-selected="true">Fonlar</button>
+    <button type="button" class="tab" role="tab" id="tab-holdings"
+            aria-controls="panel-holdings" aria-selected="false">Portföy Bileşenleri</button>
+  </nav>
+
+  <!-- ══════════ the fund ledger ══════════ -->
+  <section id="panel-funds" role="tabpanel" aria-labelledby="tab-funds" tabindex="0">
+
+    <div class="totals">
+      <div class="total-block">
+        <div class="eyebrow">Toplam Tasfiye Değeri</div>
+        <div class="total-value pending" id="totalLiq">—</div>
+        <div class="asof">Saklayıcı bankalarca henüz açıklanmadı</div>
+      </div>
+      <div class="total-block">
+        <div class="eyebrow">Son Bildirilen Toplam Portföy Değeri</div>
+        <div class="total-value" id="totalNav">—</div>
+        <div class="asof" id="totalAsof"></div>
+      </div>
+      <div class="total-block">
+        <div class="eyebrow">Fon Sayısı</div>
+        <div class="total-value" id="totalCount">—</div>
+        <div class="asof">Portföy dağılım raporu yayımlayan fonlar</div>
+      </div>
     </div>
-    <div class="total-block">
-      <div class="eyebrow">Son Bildirilen Toplam Portföy Değeri</div>
-      <div class="total-value" id="totalNav">—</div>
-      <div class="asof" id="totalAsof"></div>
+
+    <div class="controls">
+      <input type="search" id="q" placeholder="Fon kodu veya adı ara" aria-label="Fon ara" autocomplete="off">
+      <select id="founder" aria-label="Kurucuya göre filtrele"><option value="">Tüm kurucular</option></select>
+      <span class="count" id="count"></span>
     </div>
-    <div class="total-block">
-      <div class="eyebrow">Fon Sayısı</div>
-      <div class="total-value" id="totalCount">—</div>
-      <div class="asof">Portföy dağılım raporu yayımlayan fonlar</div>
-    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th data-sort="fundCode">Fon</th>
+          <th class="col-founder" data-sort="founder">Kurucu</th>
+          <th class="r" data-sort="nav">Son Portföy Değeri</th>
+          <th class="r col-unit" data-sort="unitPrice">Birim Pay</th>
+          <th data-sort="reportDate">Rapor Tarihi</th>
+          <th class="r" data-sort="liquidationValue">Tasfiye Değeri</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty" id="empty" hidden>Eşleşen fon bulunamadı.</div>
+
   </section>
 
-  <div class="controls">
-    <input type="search" id="q" placeholder="Fon kodu veya adı ara" aria-label="Fon ara" autocomplete="off">
-    <select id="founder" aria-label="Kurucuya göre filtrele"><option value="">Tüm kurucular</option></select>
-    <span class="count" id="count"></span>
-  </div>
+  <!-- ══════════ what those funds actually hold ══════════ -->
+  <section id="panel-holdings" role="tabpanel" aria-labelledby="tab-holdings" tabindex="0" hidden>
 
-  <table>
-    <thead>
-      <tr>
-        <th data-sort="fundCode">Fon</th>
-        <th class="col-founder" data-sort="founder">Kurucu</th>
-        <th class="r" data-sort="nav">Son Portföy Değeri</th>
-        <th class="r col-unit" data-sort="unitPrice">Birim Pay</th>
-        <th data-sort="reportDate">Rapor Tarihi</th>
-        <th class="r" data-sort="liquidationValue">Tasfiye Değeri</th>
-      </tr>
-    </thead>
-    <tbody id="rows"></tbody>
-  </table>
-  <div class="empty" id="empty" hidden>Eşleşen fon bulunamadı.</div>
+    <div class="totals" id="hTally"></div>
+
+    <div class="controls">
+      <input type="search" id="hq" placeholder="İhraççı, şirket, kod veya fon ara"
+             aria-label="Bileşen ara" autocomplete="off">
+      <div class="chips" id="hChips" role="group" aria-label="Varlık sınıfı"></div>
+      <span class="count" id="hCount"></span>
+    </div>
+
+    <div id="hSections"></div>
+
+  </section>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <p>
-      Portföy değerleri, her fonun KAP'ta yayımlanan son <em>Portföy Dağılım Raporu</em>'ndan
-      alınmıştır. Her satırdaki tarih, ilgili raporun yayım tarihidir; değerler o tarih
-      itibarıyladır ve tasfiye tutarı değildir.
-    </p>
-    <p>
-      Tasfiye tutarları, SPK kararı uyarınca görevlendirilen saklayıcı bankalar tarafından
-      belirlenir ve KAP'ta yer almaz. Bu sayfada tasfiye değeri, açıklanana kadar
-      &ldquo;—&rdquo; olarak gösterilir.
-    </p>
+    <div id="notes-funds">
+      <p>
+        Portföy değerleri, her fonun KAP'ta yayımlanan son <em>Portföy Dağılım Raporu</em>'ndan
+        alınmıştır. Her satırdaki tarih, ilgili raporun yayım tarihidir; değerler o tarih
+        itibarıyladır ve tasfiye tutarı değildir.
+      </p>
+      <p>
+        Tasfiye tutarları, SPK kararı uyarınca görevlendirilen saklayıcı bankalar tarafından
+        belirlenir ve KAP'ta yer almaz. Bu sayfada tasfiye değeri, açıklanana kadar
+        &ldquo;—&rdquo; olarak gösterilir.
+      </p>
+    </div>
+    <div id="notes-holdings" hidden>
+      <p>
+        Bileşenler, aynı raporların <em>Fon Portföy Değeri Tablosu</em> bölümünden okunmuştur.
+        Repo ve türev pozisyonlar, mevduat ve katılma hesapları, kıymetli madenler, döviz ve
+        VİOP teminatları kapsam dışıdır. Tutar gösterilmez; liste yalnızca hangi varlığa maruz
+        kalındığını gösterir.
+      </p>
+      <p>
+        Aynı ihraççı raporlar arasında farklı yazılabiliyor; kayıtlar ISIN kökü üzerinden
+        birleştirilmiş, diğer yazımlar satır altında verilmiştir. Kira sertifikalarında bazı
+        raporlar varlık kiralama şirketini, bazıları kaynak kuruluşu yazar — ikisi de
+        listelenir. Fon katılma paylarının çoğu raporlarda yalnızca fon koduyla yer alır.
+      </p>
+    </div>
   </div>
 </footer>
 
