@@ -38,7 +38,7 @@
   "file": "TP2_TP2_2026.08.pdf",
   "allocation": {
    "equity": 0.0,
-   "tbill": 0.01,
+   "tbill": 0.0,
    "govbond": 10.36,
    "corpbond": 0.12,
    "sukuk": 6.85,
@@ -115,11 +115,12 @@
    "equity": 58.48,
    "govbond": 0.0,
    "corpbond": 0.0,
+   "finbill": 0.27,
    "tbill": 0.0,
    "sukuk": 0.0,
    "participation": 0.0,
-   "deposit": 7.32,
-   "repo": 0.0
+   "fund": 33.93,
+   "deposit": 7.32
   },
   "liquidationValue": null
  },
@@ -139,11 +140,12 @@
    "equity": 0.0,
    "govbond": 17.24,
    "corpbond": 0.0,
+   "finbill": 7.12,
    "tbill": 0.0,
    "sukuk": 0.15,
    "participation": 2.55,
-   "deposit": 15.68,
-   "repo": 10.48
+   "fund": 0.0,
+   "deposit": 15.68
   },
   "liquidationValue": null
  },
@@ -261,7 +263,7 @@
   "file": "HPH_HPH_2026.08.pdf",
   "allocation": {
    "equity": 0.0,
-   "tbill": 0.03,
+   "tbill": 0.0,
    "govbond": 0.0,
    "corpbond": 0.0,
    "sukuk": 6.18,
@@ -311,8 +313,8 @@
   "file": "TLV_TLV_2026.08.pdf",
   "allocation": {
    "equity": 0.0,
-   "tbill": 0.18,
-   "govbond": 0.09,
+   "tbill": 0.0,
+   "govbond": 0.0,
    "corpbond": 0.0,
    "sukuk": 31.63,
    "finbill": 0.0,
@@ -363,11 +365,12 @@
    "equity": 0.0,
    "govbond": 35.68,
    "corpbond": 0.0,
+   "finbill": 8.39,
    "tbill": 0.0,
    "sukuk": 0.0,
    "participation": 1.12,
-   "deposit": 20.94,
-   "repo": 28.52
+   "fund": 0.0,
+   "deposit": 20.94
   },
   "liquidationValue": null
  },
@@ -435,7 +438,7 @@
   "file": "PKM_PKM_2026.08.pdf",
   "allocation": {
    "equity": 0.0,
-   "tbill": 0.28,
+   "tbill": 0.0,
    "govbond": 0.0,
    "corpbond": 0.0,
    "sukuk": 31.39,
@@ -512,11 +515,12 @@
    "equity": 87.32,
    "govbond": 0.0,
    "corpbond": 0.0,
+   "finbill": 0.0,
    "tbill": 0.0,
    "sukuk": 0.0,
    "participation": 0.0,
-   "deposit": 0.0,
-   "repo": 0.0
+   "fund": 12.21,
+   "deposit": 0.0
   },
   "liquidationValue": null
  },
@@ -634,7 +638,7 @@
   "file": "PAB_PAB_2026.08.pdf",
   "allocation": {
    "equity": 0.0,
-   "tbill": 0.01,
+   "tbill": 0.0,
    "govbond": 10.64,
    "corpbond": 0.0,
    "sukuk": 0.0,
@@ -661,11 +665,12 @@
    "equity": 93.59,
    "govbond": 0.0,
    "corpbond": 0.0,
+   "finbill": 0.0,
    "tbill": 0.0,
    "sukuk": 0.0,
    "participation": 4.96,
-   "deposit": 0.0,
-   "repo": 0.0
+   "fund": 1.45,
+   "deposit": 0.0
   },
   "liquidationValue": null
  },
@@ -932,6 +937,7 @@
   "sourceUrl": "https://www.kap.org.tr/tr/Bildirim/1663182",
   "file": "PMP_PMP_2026.09.pdf",
   "allocation": {
+   "equity": 117.82,
    "tbill": 0.0,
    "govbond": 0.0,
    "corpbond": 0.0,
@@ -939,8 +945,7 @@
    "finbill": 0.0,
    "deposit": 0.0,
    "fund": 0.0,
-   "repo": 0.0,
-   "equity": 32.53
+   "repo": 0.0
   },
   "liquidationValue": null
  },
@@ -960,11 +965,12 @@
    "equity": 84.18,
    "govbond": 0.0,
    "corpbond": 0.0,
+   "finbill": 0.0,
    "tbill": 0.0,
    "sukuk": 0.0,
    "participation": 0.0,
-   "deposit": 0.0,
-   "repo": 0.0
+   "fund": 9.45,
+   "deposit": 0.0
   },
   "liquidationValue": null
  },
@@ -1006,6 +1012,7 @@
   "sourceUrl": "https://www.kap.org.tr/tr/Bildirim/1663175",
   "file": "BRT_BRT_2026.09.pdf",
   "allocation": {
+   "equity": 103.82,
    "tbill": 0.0,
    "govbond": 0.0,
    "corpbond": 0.0,
@@ -1013,8 +1020,7 @@
    "finbill": 0.0,
    "deposit": 0.0,
    "fund": 0.0,
-   "repo": 0.0,
-   "equity": 26.18
+   "repo": 0.0
   },
   "liquidationValue": null
  },
@@ -1059,11 +1065,12 @@
    "equity": 90.14,
    "govbond": 0.0,
    "corpbond": 0.0,
+   "finbill": 0.0,
    "tbill": 0.0,
    "sukuk": 0.0,
    "participation": 0.0,
-   "deposit": 0.0,
-   "repo": 0.0
+   "fund": 9.86,
+   "deposit": 0.0
   },
   "liquidationValue": null
  },
@@ -1158,11 +1165,12 @@
    "equity": 94.68,
    "govbond": 0.0,
    "corpbond": 0.0,
+   "finbill": 0.0,
    "tbill": 0.0,
    "sukuk": 0.0,
    "participation": 0.0,
-   "deposit": 0.0,
-   "repo": 0.0
+   "fund": 5.32,
+   "deposit": 0.0
   },
   "liquidationValue": null
  }

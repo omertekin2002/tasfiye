@@ -175,7 +175,9 @@ silently wrong:
   original at the same offsets.
 
 Every row is cross-checked with `NAV ≈ unitPrice × shares` (1% tolerance) and carries a
-`verified` flag; all 47 currently pass.
+`verified` flag; all 47 currently pass. The asset mix has its own traps — see
+*Reading the allocation block* under `extract_holdings.py`, which is where the cross-check
+that found them lives.
 
 ---
 
@@ -228,9 +230,11 @@ and the other spellings are kept in `issuerAlt`. Two cases go further than spell
 
 **Verification.** Extracted holdings are cross-checked against the allocation percentages
 in `data/funds.json`: for each fund and class, a non-zero percentage must coincide with at
-least one holding. 176 of 188 checks agree, and all 12 exceptions are accounted for — see
-*Known gaps in `extract_fund_data.py`* below. Row counts were also checked directly
-against the PDFs for both layouts (BTJ 5 equities + 1 fund unit; TLY 54 equity lots).
+least one holding. 186 of 188 checks agree, and both exceptions are real rather than parse
+errors: BMU reports 1.25% `Yatırım Fonu` because section II is a weekly *average* and its
+portfolio table holds no fund units on the snapshot date, and TLV files its single fund
+unit (TPKGY, `TRYTALP00036`) under a `TÜREV İŞLEMLER` heading. Row counts were also checked
+directly against the PDFs for both layouts (BTJ 5 equities + 1 fund unit; TLY 54 equity lots).
 
 **Not resolved.** 12 of the 26 held funds are identified only by code and founder
 (`T3B`, `THF`, `TMV`, `HMV`, `MTL`, `ABG`, `BAC`, `GCD`, `KHD`, `KVR`, `LAI`, `PFS`).
@@ -238,17 +242,29 @@ Most reports print a fund unit as a bare code; those 12 are not among the 47 in
 `_manifest/funds.json`, and KAP exposes no code→name endpoint (its fund directory is an
 SPA, and TEFAS is bot-protected).
 
-### Known gaps in `extract_fund_data.py`
+### Reading the allocation block
 
-Found while cross-checking; they affect `data/funds.json`, not `data/holdings.json`:
+`extract_fund_data.py` takes the asset mix from section II. Two things about that section
+are easy to get wrong, and the cross-check above caught both:
 
-- **Turnover read as allocation.** `Hazine Bonosu` and `Devlet Tahvili` appear both under
-  `F-)…Menkul Kıymetler Yüzdesi` and under `G-)…Portföy Devir Hızı`. `allocation()` takes
-  the max across both, so HPH, PKM and TLV carry a bond allocation they do not have —
-  each holds lease certificates only.
-- **Excel-layout labels are missed.** Those reports say `Katılma Belgesi` (not
-  `Yatırım Fonu`) and `Finansman Bonosu` (not `Finansman Bonusu`), so AP5, BSH, BTJ, DFI,
-  KLH, SNY report 0% in funds they demonstrably hold.
+- **Bound the scan to the percentage block.** Section II names the same securities twice:
+  once as the share of the portfolio they make up (`…Ortalama Portföydeki Menkul Kıymetler
+  Yüzdesi`) and again as how fast they were traded (`…Ortalama Portföy Devir Hızı`). Both
+  blocks list `Hisse Senedi`, `Hazine Bonosu` and `Devlet Tahvili`, so a scan of the whole
+  document reads turnover as allocation — HPH's percentage block says `Hazine Bonosu : 0,00`
+  while its turnover block says `0,03`. `alloc_block()` cuts the text at those two headings
+  and reads only what lies between. The layouts letter them differently (`F-)` / `G-)` in
+  the Turkish reports, `F.` / `H.` in the Excel ones), so the bound matches the heading
+  *text*, not the letter. An empty allocation now means the heading was not found — i.e. a
+  third layout has appeared — and the run says so.
+- **A percentage may exceed 100.** A fund that borrows to buy equity reports over 100% on
+  that line and offsets it with a negative `TPP-TPP Borçlanma`: BRT `103,82` / `-9,70` and
+  PMP `117,82` / `-19,52`, each set summing back to 100. Bounding the accepted range at
+  100% silently dropped those two figures.
+
+Both layouts also have to be listed in `ALLOC_LABELS`: the Excel reports say
+`Katılma Belgesi` where the Turkish ones say `Yatırım Fonu`, and spell `Finansman Bonosu`
+correctly where the Turkish ones misspell it `Bonusu`.
 
 ---
 

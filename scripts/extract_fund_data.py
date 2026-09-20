@@ -72,29 +72,62 @@ def grab(txt, *patterns):
     return None
 
 
+# The two layouts label the same asset class differently, so both spellings are listed:
+# the Turkish reports print "Yatırım Fonu" and misspell "Finansman Bonosu" as "Bonusu",
+# the Excel ones print "Katılma Belgesi" and spell the finance bill correctly.
 ALLOC_LABELS = {
     "Hisse Senedi": "equity", "Hazine Bonosu": "tbill", "Devlet Tahvili": "govbond",
     "Özel Sektör Tahvili": "corpbond", "Kira Sertifikaları": "sukuk",
-    "Finansman Bonusu": "finbill", "Ters Repo": "reverserepo", "Repo": "repo",
+    "Finansman Bonusu": "finbill", "Finansman Bonosu": "finbill",
+    "Ters Repo": "reverserepo", "Repo": "repo",
     "Vadeli Mevduat": "deposit", "Mevduat": "deposit", "Katılma Hesabı": "participation",
-    "Yatırım Fonu": "fund", "Borsa Para Piyasası": "moneymarket",
+    "Yatırım Fonu": "fund", "Katılma Belgesi": "fund",
+    "Borsa Para Piyasası": "moneymarket",
 }
+
+# Section II lists the same securities twice: once as the percentage of the portfolio
+# they make up, and again a few lines below as how fast they were traded. Both blocks
+# name "Hisse Senedi", "Hazine Bonosu" and "Devlet Tahvili", so a scan of the whole
+# document reads turnover as allocation. Bound the scan to the percentage block, which
+# runs from its own heading to the turnover heading. The two layouts letter those
+# headings differently (F-)/G-) in the Turkish reports, F./H. in the Excel ones), so
+# match the heading text rather than the letter.
+ALLOC_BLOCK_START = r"ortalama\s+portfoydeki\s+menkul\s+kiymetler\s+yuzdesi"
+ALLOC_BLOCK_END = r"ortalama\s+portfoy\s+devir\s+hizi"
+
+
+def alloc_block(txt):
+    """Section II's percentage block, without its heading or the turnover heading."""
+    lines = txt.splitlines()
+    start = next((i for i, l in enumerate(lines)
+                  if re.search(ALLOC_BLOCK_START, fold(l))), None)
+    if start is None:
+        return []
+    end = next((i for i in range(start + 1, len(lines))
+                if re.search(ALLOC_BLOCK_END, fold(lines[i]))), len(lines))
+    return lines[start + 1:end]
 
 
 def allocation(txt):
     out = {}
     folded = {fold(k): v for k, v in ALLOC_LABELS.items()}
-    for line in txt.splitlines():
+    for line in alloc_block(txt):
         fl = fold(line)
         m = re.match(r"\s*(?:[a-z]\d?-\)|[a-z]\.|[a-z]\))?\s*([a-z /\-]+?)\s*:\s*([\d.,]+)\s*%?\s*$", fl)
         if not m:
             continue
         val = num(line[m.start(2):m.end(2)])
-        if val is None or not (0 <= val <= 100):
+        # A fund that borrows to buy equity reports MORE than 100% in that line and
+        # offsets it with a negative "TPP-TPP Borçlanma" (BRT 103,82 / -9,70;
+        # PMP 117,82 / -19,52 — each set sums back to 100). The bound is only here to
+        # reject a figure captured from the wrong column, so leave room for leverage.
+        if val is None or not (0 <= val <= 200):
             continue
         label = m.group(1).strip()
         for k, slug in folded.items():
             if label.startswith(k):
+                # a slug can still be written twice by label variants that share a
+                # prefix ("Vadeli Mevduat TL" / "Vadeli Mevduat Döviz"); keep the larger
                 out[slug] = max(out.get(slug, 0.0), round(val, 2))
                 break
     return out
@@ -166,6 +199,11 @@ def main():
     print(f"  cross-check verified  : {sum(1 for r in rows if r['verified'])}")
     if unverified:
         print(f"  NOT verified          : {', '.join(unverified)}")
+    # an empty allocation means the percentage block's heading was not found, i.e. a
+    # third layout has appeared; say so rather than shipping a row with no asset mix
+    noalloc = [r["fundCode"] for r in rows if not r["allocation"]]
+    if noalloc:
+        print(f"  NO allocation block   : {', '.join(noalloc)}")
 
 
 if __name__ == "__main__":
