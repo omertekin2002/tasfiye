@@ -4,125 +4,172 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>tasfiye</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<meta name="description" content="Tasfiye edilen yatırım fonlarının son bildirilen portföy değerleri ve portföy bileşenleri.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="masthead">
-  <div class="wrap">
-    <div class="eyebrow">SPK Bülteni 2026/60 &middot; 17.09.2026</div>
-    <h1>tasfiye</h1>
-    <p class="lede">
-      Tasfiye edilen yatırım fonlarının son bildirilen portföy değerleri.
-      Tasfiye tutarları saklayıcı bankalar tarafından açıklandıkça işlenecektir.
-    </p>
+<!-- the page sits inside a literal black frame; body padding is that frame -->
+<div class="frame">
+
+  <!-- ══════════ top banner ══════════ -->
+  <header class="banner">
+    <div class="banner-head">
+      <div class="banner-title">TASFİYE EDİLEN YATIRIM FONLARI</div>
+      <div class="banner-sub">SON BİLDİRİLEN PORTFÖY DEĞERLERİ. KAYNAK: KAP.</div>
+    </div>
+    <div class="banner-right">
+      <span class="sticker">SPK <b class="stripe">BÜLTEN</b> 2026/60</span>
+      <span class="callout">17.09.2026</span>
+    </div>
+  </header>
+
+  <!-- ══════════ masthead: eyebrow block + the one red panel ══════════ -->
+  <div class="masthead wrap">
+    <div class="hero">
+      <div class="eyebrow-block tint-olive"><h1>TASFİYE</h1></div>
+      <p class="lede">
+        Sermaye Piyasası Kurulu'nun 2026/60 sayılı bülteniyle tasfiyesine karar verilen
+        yatırım fonları. Her fon için KAP'ta yayımlanan son <em>Portföy Dağılım Raporu</em>
+        okunmuş, portföy değeri, birim pay fiyatı ve varlık dağılımı buraya işlenmiştir.
+      </p>
+    </div>
+
+    <aside class="cta">
+      <div class="cta-head">DİKKAT</div>
+      <p>
+        Bu sayfadaki tutarlar <em>tasfiye tutarı değildir.</em> Fonların tasfiyeden önce
+        bildirdiği son portföy değerleridir.
+      </p>
+      <p>
+        Tasfiye tutarlarını, SPK kararı uyarınca görevlendirilen saklayıcı bankalar belirler;
+        bu tutarlar KAP'ta yayımlanmaz. Açıklandıkça bu sayfaya işlenecektir.
+      </p>
+    </aside>
   </div>
-</header>
 
-<main class="wrap">
+  <main class="wrap">
 
-  <nav class="tabs" role="tablist" aria-label="Görünüm">
-    <button type="button" class="tab" role="tab" id="tab-funds"
-            aria-controls="panel-funds" aria-selected="true">Fonlar</button>
-    <button type="button" class="tab" role="tab" id="tab-holdings"
-            aria-controls="panel-holdings" aria-selected="false">Portföy Bileşenleri</button>
-  </nav>
+    <nav class="tabs" role="tablist" aria-label="Görünüm">
+      <button type="button" class="tab" role="tab" id="tab-funds"
+              aria-controls="panel-funds" aria-selected="true">FONLAR</button>
+      <button type="button" class="tab" role="tab" id="tab-holdings"
+              aria-controls="panel-holdings" aria-selected="false">PORTFÖY BİLEŞENLERİ</button>
+    </nav>
 
-  <!-- ══════════ the fund ledger ══════════ -->
-  <section id="panel-funds" role="tabpanel" aria-labelledby="tab-funds" tabindex="0">
+    <!-- ══════════ the fund ledger ══════════ -->
+    <section id="panel-funds" role="tabpanel" aria-labelledby="tab-funds" tabindex="0">
 
-    <div class="totals">
-      <div class="total-block">
-        <div class="eyebrow">Toplam Tasfiye Değeri</div>
-        <div class="total-value pending" id="totalLiq">—</div>
-        <div class="asof">Saklayıcı bankalarca henüz açıklanmadı</div>
+      <div class="totals">
+        <div class="total-block">
+          <div class="eyebrow">TOPLAM TASFİYE DEĞERİ</div>
+          <div class="total-value pending" id="totalLiq">—</div>
+          <div class="asof with-burst"><span class="burst">BEKLEMEDE</span><span>Saklayıcı bankalarca henüz açıklanmadı</span></div>
+        </div>
+        <div class="total-block">
+          <div class="eyebrow">SON BİLDİRİLEN TOPLAM PORTFÖY DEĞERİ</div>
+          <div class="total-value" id="totalNav">—</div>
+          <div class="asof" id="totalAsof"></div>
+        </div>
+        <div class="total-block">
+          <div class="eyebrow">FON SAYISI</div>
+          <div class="total-value" id="totalCount">—</div>
+          <div class="asof">Portföy dağılım raporu yayımlayan fonlar</div>
+        </div>
       </div>
-      <div class="total-block">
-        <div class="eyebrow">Son Bildirilen Toplam Portföy Değeri</div>
-        <div class="total-value" id="totalNav">—</div>
-        <div class="asof" id="totalAsof"></div>
+
+      <div class="controls">
+        <input type="search" id="q" placeholder="Fon kodu veya adı ara" aria-label="Fon ara" autocomplete="off">
+        <select id="founder" aria-label="Kurucuya göre filtrele"><option value="">Tüm kurucular</option></select>
+        <span class="count" id="count"></span>
       </div>
-      <div class="total-block">
-        <div class="eyebrow">Fon Sayısı</div>
-        <div class="total-value" id="totalCount">—</div>
-        <div class="asof">Portföy dağılım raporu yayımlayan fonlar</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th data-sort="fundCode">FON</th>
+            <th class="col-founder" data-sort="founder">KURUCU</th>
+            <th class="r" data-sort="nav">SON PORTFÖY DEĞERİ</th>
+            <th class="r col-unit" data-sort="unitPrice">BİRİM PAY</th>
+            <th data-sort="reportDate">RAPOR TARİHİ</th>
+            <th class="r" data-sort="liquidationValue">TASFİYE DEĞERİ</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty" hidden>Eşleşen fon bulunamadı.</div>
+
+    </section>
+
+    <!-- ══════════ what those funds actually hold ══════════ -->
+    <section id="panel-holdings" role="tabpanel" aria-labelledby="tab-holdings" tabindex="0" hidden>
+
+      <div class="totals" id="hTally"></div>
+
+      <div class="controls">
+        <input type="search" id="hq" placeholder="İhraççı, şirket, kod veya fon ara"
+               aria-label="Bileşen ara" autocomplete="off">
+        <div class="chips" id="hChips" role="group" aria-label="Varlık sınıfı"></div>
+        <span class="count" id="hCount"></span>
       </div>
-    </div>
 
-    <div class="controls">
-      <input type="search" id="q" placeholder="Fon kodu veya adı ara" aria-label="Fon ara" autocomplete="off">
-      <select id="founder" aria-label="Kurucuya göre filtrele"><option value="">Tüm kurucular</option></select>
-      <span class="count" id="count"></span>
-    </div>
+      <div id="hSections"></div>
 
-    <table>
-      <thead>
-        <tr>
-          <th data-sort="fundCode">Fon</th>
-          <th class="col-founder" data-sort="founder">Kurucu</th>
-          <th class="r" data-sort="nav">Son Portföy Değeri</th>
-          <th class="r col-unit" data-sort="unitPrice">Birim Pay</th>
-          <th data-sort="reportDate">Rapor Tarihi</th>
-          <th class="r" data-sort="liquidationValue">Tasfiye Değeri</th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
-    <div class="empty" id="empty" hidden>Eşleşen fon bulunamadı.</div>
+    </section>
 
-  </section>
+  </main>
 
-  <!-- ══════════ what those funds actually hold ══════════ -->
-  <section id="panel-holdings" role="tabpanel" aria-labelledby="tab-holdings" tabindex="0" hidden>
+  <footer>
+    <div class="wrap">
+      <div class="notes" id="notes-funds">
+        <p>
+          Portföy değerleri, her fonun KAP'ta yayımlanan son <em>Portföy Dağılım Raporu</em>'ndan
+          alınmıştır. Her satırdaki tarih, ilgili raporun yayım tarihidir; değerler o tarih
+          itibarıyladır ve tasfiye tutarı değildir.
+        </p>
+        <p>
+          Tasfiye tutarları, SPK kararı uyarınca görevlendirilen saklayıcı bankalar tarafından
+          belirlenir ve KAP'ta yer almaz. Bu sayfada tasfiye değeri, açıklanana kadar
+          &ldquo;—&rdquo; olarak gösterilir.
+        </p>
+      </div>
+      <div class="notes" id="notes-holdings" hidden>
+        <p>
+          Bileşenler, aynı raporların <em>Fon Portföy Değeri Tablosu</em> bölümünden okunmuştur.
+          Repo ve türev pozisyonlar, mevduat ve katılma hesapları, kıymetli madenler, döviz ve
+          VİOP teminatları kapsam dışıdır. Tutar gösterilmez; liste yalnızca hangi varlığa maruz
+          kalındığını gösterir.
+        </p>
+        <p>
+          Aynı ihraççı raporlar arasında farklı yazılabiliyor; kayıtlar ISIN kökü üzerinden
+          birleştirilmiş, diğer yazımlar satır altında verilmiştir. Kira sertifikalarında bazı
+          raporlar varlık kiralama şirketini, bazıları kaynak kuruluşu yazar — ikisi de
+          listelenir. Fon katılma paylarının çoğu raporlarda yalnızca fon koduyla yer alır.
+        </p>
+      </div>
 
-    <div class="totals" id="hTally"></div>
+      <!-- icon-label nav: four square labels on a rule, 1996 footer furniture -->
+      <nav class="iconnav" aria-label="Kaynaklar">
+        <a href="https://www.kap.org.tr/" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">KAP</span><span class="lbl">BİLDİRİMLER</span></a>
+        <a href="https://www.tefas.gov.tr/" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">TEF</span><span class="lbl">TEFAS</span></a>
+        <a href="portfolio%20allocation/INDEX.csv">
+          <span class="ico" aria-hidden="true">CSV</span><span class="lbl">RAPOR DİZİNİ</span></a>
+        <a href="https://github.com/omertekin2002/tasfiye" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">SRC</span><span class="lbl">KAYNAK KOD</span></a>
+      </nav>
 
-    <div class="controls">
-      <input type="search" id="hq" placeholder="İhraççı, şirket, kod veya fon ara"
-             aria-label="Bileşen ara" autocomplete="off">
-      <div class="chips" id="hChips" role="group" aria-label="Varlık sınıfı"></div>
-      <span class="count" id="hCount"></span>
-    </div>
-
-    <div id="hSections"></div>
-
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div id="notes-funds">
-      <p>
-        Portföy değerleri, her fonun KAP'ta yayımlanan son <em>Portföy Dağılım Raporu</em>'ndan
-        alınmıştır. Her satırdaki tarih, ilgili raporun yayım tarihidir; değerler o tarih
-        itibarıyladır ve tasfiye tutarı değildir.
+      <p class="fineprint">
+        <a href="https://github.com/omertekin2002/tasfiye" target="_blank" rel="noopener">Kaynak ve yöntem</a>
+        &middot; Veriler KAP'ta yayımlanan kamuya açık raporlardan derlenmiştir.
+        Yatırım tavsiyesi değildir.
       </p>
-      <p>
-        Tasfiye tutarları, SPK kararı uyarınca görevlendirilen saklayıcı bankalar tarafından
-        belirlenir ve KAP'ta yer almaz. Bu sayfada tasfiye değeri, açıklanana kadar
-        &ldquo;—&rdquo; olarak gösterilir.
-      </p>
+      <p class="fineprint">Bu sayfa 800×600 ve üzeri çözünürlükler için tasarlanmıştır.</p>
     </div>
-    <div id="notes-holdings" hidden>
-      <p>
-        Bileşenler, aynı raporların <em>Fon Portföy Değeri Tablosu</em> bölümünden okunmuştur.
-        Repo ve türev pozisyonlar, mevduat ve katılma hesapları, kıymetli madenler, döviz ve
-        VİOP teminatları kapsam dışıdır. Tutar gösterilmez; liste yalnızca hangi varlığa maruz
-        kalındığını gösterir.
-      </p>
-      <p>
-        Aynı ihraççı raporlar arasında farklı yazılabiliyor; kayıtlar ISIN kökü üzerinden
-        birleştirilmiş, diğer yazımlar satır altında verilmiştir. Kira sertifikalarında bazı
-        raporlar varlık kiralama şirketini, bazıları kaynak kuruluşu yazar — ikisi de
-        listelenir. Fon katılma paylarının çoğu raporlarda yalnızca fon koduyla yer alır.
-      </p>
-    </div>
-  </div>
-</footer>
+  </footer>
+
+</div>
 
 <script src="app.js"></script>
 </body>

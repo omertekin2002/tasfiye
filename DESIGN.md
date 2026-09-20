@@ -1,361 +1,479 @@
 ---
 version: alpha
-name: Stripi-Inspired-design-analysis
-description: An inspired interpretation of Stripi's design language — a financial-infrastructure brand built on a deep navy ink, an electric indigo primary, and a recurring atmospheric gradient mesh that occupies the upper third of nearly every marketing page. The system pairs the proprietary Sohne family at thin (300) weights with negative letter-spacing for editorial-density display headlines, and uses tabular-figure body type where money and numerics matter. Buttons are tight-radius pills, cards live on near-white surfaces, and the dashboard track flips polarity to a familiar dark-app shell.
+name: Dell 1996 Inspired
+description: An inspired interpretation of Dell.com's 1996 design language — a catalog-era enterprise web design built around a literal black page frame, vivid flat color-block "ribbon cards" tinted in sage, salmon, periwinkle, sky, peach and lime, chunky Helvetica-Black display titles, Times Roman body copy, and an entire visual vocabulary of pre-Photoshop hand-cut GIF stickers (NEW! bursts, award seals, beveled product photos).
 
 colors:
-  primary: "#533afd"
-  primary-deep: "#4434d4"
-  primary-press: "#2e2b8c"
-  primary-soft: "#665efd"
-  primary-bg-subdued-hover: "#b9b9f9"
-  brand-dark-900: "#1c1e54"
-  ink: "#0d253d"
-  ink-secondary: "#273951"
-  ink-mute: "#64748d"
-  ink-mute-2: "#61718a"
+  primary: "#e91d2a"
   on-primary: "#ffffff"
   canvas: "#ffffff"
-  canvas-soft: "#f6f9fc"
-  canvas-cream: "#f5e9d4"
-  hairline: "#e3e8ee"
-  hairline-input: "#a8c3de"
-  ruby: "#ea2261"
-  magenta: "#f96bee"
-  lemon: "#9b6829"
-  shadow-blue: "#003770"
+  surface: "#ffffff"
+  ink: "#000000"
+  frame-ink: "#000000"
+  yellow-sticker: "#fcc20f"
+  purple-stripe: "#6a26a4"
+  link: "#0000ee"
+
+  # Ribbon-card tint family (one per product line)
+  tint-olive: "#8e8a25"
+  tint-sage: "#b3bd95"
+  tint-salmon: "#d77a7a"
+  tint-peach: "#e6915d"
+  tint-lime: "#c0d4a7"
+  tint-sky: "#9ab6c8"
+  tint-steel: "#a5b8c0"
+  tint-periwinkle: "#8c9ae0"
 
 typography:
-  display-xxl:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 56px
-    fontWeight: 300
-    lineHeight: 1.03
-    letterSpacing: -1.4px
-    fontFeature: ss01
-  display-xl:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 48px
-    fontWeight: 300
-    lineHeight: 1.15
-    letterSpacing: -0.96px
-    fontFeature: ss01
-  display-lg:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 32px
-    fontWeight: 300
-    lineHeight: 1.1
-    letterSpacing: -0.64px
-    fontFeature: ss01
-  display-md:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 26px
-    fontWeight: 300
-    lineHeight: 1.12
-    letterSpacing: -0.26px
-    fontFeature: ss01
-  heading-lg:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 22px
-    fontWeight: 300
-    lineHeight: 1.1
-    letterSpacing: -0.22px
-    fontFeature: ss01
-  heading-md:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 20px
-    fontWeight: 300
-    lineHeight: 1.4
-    letterSpacing: -0.2px
-    fontFeature: ss01
-  heading-sm:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 18px
-    fontWeight: 300
-    lineHeight: 1.4
-    letterSpacing: 0
-    fontFeature: ss01
-  body-lg:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 16px
-    fontWeight: 300
-    lineHeight: 1.4
-    letterSpacing: 0
-    fontFeature: ss01
-  body-md:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 15px
-    fontWeight: 300
-    lineHeight: 1.4
-    letterSpacing: 0
-    fontFeature: ss01
-  body-tabular:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 14px
-    fontWeight: 300
-    lineHeight: 1.4
-    letterSpacing: -0.42px
-    fontFeature: tnum
-  button-md:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 16px
-    fontWeight: 400
+  display:
+    fontFamily: Arial Black
+    fontSize: 36px
+    fontWeight: 900
     lineHeight: 1.0
     letterSpacing: 0
-    fontFeature: ss01
-  button-sm:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
+  heading-1:
+    fontFamily: Arial Black
+    fontSize: 24px
+    fontWeight: 900
+    lineHeight: 1.05
+    letterSpacing: 0
+  heading-2:
+    fontFamily: Helvetica
+    fontSize: 16px
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: 0
+  heading-3:
+    fontFamily: Helvetica
+    fontSize: 14px
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: 0
+  body:
+    fontFamily: Times New Roman
     fontSize: 14px
     fontWeight: 400
-    lineHeight: 1.0
+    lineHeight: 1.4
     letterSpacing: 0
-    fontFeature: ss01
+  body-sm:
+    fontFamily: Times New Roman
+    fontSize: 12px
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: 0
   caption:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 13px
-    fontWeight: 400
-    lineHeight: 1.4
-    letterSpacing: -0.39px
-    fontFeature: tnum
-  micro:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
+    fontFamily: Times New Roman
     fontSize: 11px
-    fontWeight: 300
+    fontWeight: 400
+    lineHeight: 1.35
+    letterSpacing: 0
+  button:
+    fontFamily: Helvetica
+    fontSize: 12px
+    fontWeight: 700
+    lineHeight: 1.0
+    letterSpacing: 0
+  link:
+    fontFamily: Times New Roman
+    fontSize: 14px
+    fontWeight: 400
     lineHeight: 1.4
     letterSpacing: 0
-    fontFeature: ss01
-  micro-cap:
-    fontFamily: "sohne-var, 'SF Pro Display', system-ui, -apple-system, sans-serif"
-    fontSize: 10px
-    fontWeight: 400
-    lineHeight: 1.15
-    letterSpacing: 0.1px
-    fontFeature: ss01
+  ui-label:
+    fontFamily: Helvetica
+    fontSize: 12px
+    fontWeight: 700
+    lineHeight: 1.0
+    letterSpacing: 0
 
 rounded:
-  xs: 4px
-  sm: 6px
-  md: 8px
-  lg: 12px
-  xl: 16px
-  pill: 9999px
+  none: 0px
+  full: 9999px
 
 spacing:
   xxs: 2px
   xs: 4px
+  s: 6px
   sm: 8px
+  m: 10px
   md: 12px
   lg: 16px
-  xl: 24px
-  xxl: 32px
-  huge: 64px
+  xl: 20px
+  xxl: 24px
+  section-sm: 32px
+  section: 40px
+  section-lg: 48px
 
 components:
-  button-primary-pill:
+  # ─── Brand-native components ───
+  page-frame:
+    backgroundColor: "{colors.frame-ink}"
+    textColor: "{colors.canvas}"
+    rounded: "{rounded.none}"
+    padding: 8px
+
+  top-banner:
+    backgroundColor: "{colors.frame-ink}"
+    textColor: "{colors.canvas}"
+    typography: "{typography.heading-2}"
+    rounded: "{rounded.none}"
+    padding: 12px 16px
+
+  section-eyebrow-olive:
+    backgroundColor: "{colors.tint-olive}"
+    textColor: "{colors.ink}"
+    typography: "{typography.display}"
+    rounded: "{rounded.none}"
+    padding: 24px 16px
+
+  section-eyebrow-salmon:
+    backgroundColor: "{colors.tint-salmon}"
+    textColor: "{colors.ink}"
+    typography: "{typography.display}"
+    rounded: "{rounded.none}"
+    padding: 24px 16px
+
+  ribbon-card-title:
+    backgroundColor: "{colors.canvas}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.heading-3}"
+    rounded: "{rounded.none}"
+    padding: 6px 12px
+
+  ribbon-card-body-sage:
+    backgroundColor: "{colors.tint-sage}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 12px 16px
+
+  ribbon-card-body-salmon:
+    backgroundColor: "{colors.tint-salmon}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 12px 16px
+
+  ribbon-card-body-peach:
+    backgroundColor: "{colors.tint-peach}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 12px 16px
+
+  ribbon-card-body-lime:
+    backgroundColor: "{colors.tint-lime}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 12px 16px
+
+  ribbon-card-body-sky:
+    backgroundColor: "{colors.tint-sky}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 12px 16px
+
+  ribbon-card-body-steel:
+    backgroundColor: "{colors.tint-steel}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 12px 16px
+
+  ribbon-card-body-periwinkle:
+    backgroundColor: "{colors.tint-periwinkle}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 12px 16px
+
+  cta-block-red:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-primary}"
-    typography: "{typography.button-md}"
-    rounded: "{rounded.pill}"
-    padding: 8px 16px
-  button-primary-pill-pressed:
-    backgroundColor: "{colors.primary-press}"
-    textColor: "{colors.on-primary}"
-    typography: "{typography.button-md}"
-    rounded: "{rounded.pill}"
-    padding: 8px 16px
-  button-secondary:
-    backgroundColor: "{colors.canvas}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 16px
+
+  phone-callout:
+    backgroundColor: "{colors.frame-ink}"
     textColor: "{colors.primary}"
-    typography: "{typography.button-md}"
-    rounded: "{rounded.pill}"
-    padding: 8px 16px
-  button-on-dark:
-    backgroundColor: "{colors.brand-dark-900}"
-    textColor: "{colors.on-primary}"
-    typography: "{typography.button-md}"
-    rounded: "{rounded.pill}"
-    padding: 8px 16px
+    typography: "{typography.heading-2}"
+    rounded: "{rounded.none}"
+    padding: 4px 8px
+
+  buy-a-dell-sticker:
+    backgroundColor: "{colors.yellow-sticker}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.none}"
+    padding: 4px 8px
+
+  new-burst-sticker:
+    backgroundColor: "{colors.yellow-sticker}"
+    textColor: "{colors.ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.none}"
+    padding: 4px 8px
+
+  cert-seal:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.canvas}"
+    typography: "{typography.button}"
+    rounded: "{rounded.full}"
+    size: 64px
+
+  icon-label-nav:
+    backgroundColor: "{colors.canvas}"
+    textColor: "{colors.ink}"
+    typography: "{typography.ui-label}"
+    rounded: "{rounded.none}"
+    padding: 8px
+
   text-input:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.sm}"
-    padding: 8px 12px
-  text-input-focused:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.sm}"
-    padding: 8px 12px
-  card-feature-light:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.lg}"
-    padding: 32px
-  card-pricing:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.lg}"
-    padding: 32px
-  card-pricing-featured:
-    backgroundColor: "{colors.brand-dark-900}"
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: 4px 6px
+
+  button-primary:
+    backgroundColor: "{colors.frame-ink}"
     textColor: "{colors.on-primary}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.lg}"
-    padding: 32px
-  card-cream-band:
-    backgroundColor: "{colors.canvas-cream}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.lg}"
-    padding: 32px
-  card-dashboard-mockup:
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.none}"
+    padding: 6px 16px
+
+  button-secondary:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"
-    typography: "{typography.body-tabular}"
-    rounded: "{rounded.lg}"
-    padding: 24px
-  pill-tag-soft:
-    backgroundColor: "{colors.primary-bg-subdued-hover}"
-    textColor: "{colors.primary-deep}"
-    typography: "{typography.micro-cap}"
-    rounded: "{rounded.pill}"
-    padding: 4px 8px
-  nav-bar-on-mesh:
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.none}"
+    padding: 6px 16px
+
+  button-text-link:
+    backgroundColor: "{colors.canvas}"
+    textColor: "{colors.link}"
+    typography: "{typography.link}"
+    rounded: "{rounded.none}"
+
+  footer-band:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.xs}"
-    padding: 16px 24px
-  link-on-light:
+    borderColor: "{colors.frame-ink}"
+    typography: "{typography.body-sm}"
+    padding: 16px
+
+  # ─── Examples (illustrative, kit-mirror) — injected by derive-examples-block.mjs ───
+
+  # ─── Examples (illustrative) — auto-derived; resolve any TO_FILL markers below ───
+  ex-pricing-tier:
+    description: "Default Pricing tier card. Re-uses feature-card chrome with the base white surface."
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.frame-ink}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.lg}"
+  ex-pricing-tier-featured:
+    description: "Featured/highlighted tier — polarity-flipped surface (dark fill + light text in light mode, light fill + dark text in dark mode)."
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.on-primary}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.lg}"
+  ex-product-selector:
+    description: "What's Included summary card — re-purposed for SaaS / B2B verticals (NOT a literal product gallery)."
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.lg}"
+  ex-cart-drawer:
+    description: "Subscription summary — re-purposed for SaaS / B2B (line items per add-on, not literal cart)."
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.lg}"
+    item-divider: "{colors.frame-ink}"
+  ex-app-shell-row:
+    description: "Sidebar nav row inside the App Shell example. Active state uses brand primary as the indicator."
     backgroundColor: "{colors.canvas}"
-    textColor: "{colors.primary}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.xs}"
-    padding: 0px
-  footer-light:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink-mute}"
-    typography: "{typography.caption}"
-    rounded: "{rounded.xs}"
-    padding: 64px 24px
+    activeIndicator: "{colors.primary}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.sm} {spacing.md}"
+  ex-data-table-cell:
+    description: "Default data-table th + td chrome. Header uses mono-caps eyebrow typography; body uses body-sm."
+    headerBackground: "{colors.surface}"
+    headerTypography: "{typography.caption}"
+    bodyTypography: "{typography.body-sm}"
+    cellPadding: "{spacing.s} {spacing.md}"
+    rowBorder: "{colors.frame-ink}"
+  ex-auth-form-card:
+    description: "Sign-in / sign-up card. Re-uses feature-card chrome with text-input primitives inside."
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.lg}"
+  ex-modal-card:
+    description: "Modal dialog surface — same chrome as feature-card with elevated shadow."
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.lg}"
+  ex-empty-state-card:
+    description: "Empty-state illustration frame."
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.xl}"
+    captionTypography: "{typography.body}"
+  ex-toast:
+    description: "Toast notification surface — feature-card shape + medium shadow."
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.md} {spacing.lg}"
+    typography: "{typography.body-sm}"
+
 ---
+
 
 ## Overview
 
-Stripi's design language opens with the gradient mesh. A wide horizontal band of pastel cream, sherbet orange, lavender, electric indigo, and ruby pink occupies the upper third of nearly every marketing page — the brand's instantly-recognizable atmospheric backdrop. Type and product UI mockups float above it on `{colors.canvas}` (white), with the gradient acting as both decoration and visual anchor. The lower portion of the page returns to white, with feature explanations on `{colors.canvas-soft}` (a barely-tinted cool off-white) and dashboard product mockups composited as faux IDE/console panels in deep navy.
+Dell's December 1996 home page is a perfectly preserved fossil of catalog-era enterprise web design — the moment when a Fortune-100 brand decided the web was *important enough* to invest in, but two years before CSS would be widely adopted and three years before "design system" was a phrase anyone used. Every visual choice on the page is a downstream consequence of that constraint: layout via HTML tables, type via the browser's built-in font stack (Arial Black / Helvetica / Times Roman), color via 8-bit-safe flat fills, and decoration via hand-cut GIF "stickers" (the NEW! burst, the round PC Magazine Readers' Choice seal, the beveled "BUY a DELL" yellow tab). The page is bordered — literally bordered, in a 1-cell-wide black HTML table — and inside that frame, every product line gets a "ribbon card": a white title bar with a sharp black underline, a tinted body block in one of eight catalog colors (sage, salmon, peach, lime, sky, steel, periwinkle, olive), and a beveled product photograph notched into the right edge of the card.
 
-The color system has two primary roles. **Indigo** (`{colors.primary}` — `#533afd`) is the brand's signature CTA color, used sparingly: one filled pill per band. **Deep navy** (`{colors.ink}` — `#0d253d`) is the universal body text color and the fill of dashboard mockups, the featured pricing tier, and the dark-app surfaces on the dashboard track. Ruby (`{colors.ruby}`) and magenta (`{colors.magenta}`) appear inside the gradient mesh and as accent dots in product UI mockups; they are not used as button colors.
-
-Typography is built around **Sohne** at weight 300 with negative letter-spacing — the brand's editorial-density display signature. Display sizes (32–56px) use -1.4px to -0.64px tracking; body sizes use 0; tabular caption sizes (where money and numerics matter) use the OpenType `tnum` feature plus a tightening -0.36 to -0.42px tracking. The `ss01` stylistic set is enabled across all roles.
+The brand voice carries through in two anchors: a vivid Dell-red CTA panel on the left of the homepage (cream-yellow Times Roman copy on a `{colors.primary}` fill, set inside the black frame) and a screaming red phone number — `1-800-213-DELL` — pinned to the top-right of every page, because in 1996 the website was a brochure that ended with a phone call. The footer is a row of four hand-drawn icon-labels (FIND / HOME / ONLINE STORE / SERVICE & SUPPORT) linked by a thin green horizontal rule, and a single classic-Mosaic-blue underlined "Copyright" link sitting above the legal small print in Times Roman.
 
 **Key Characteristics:**
-- Gradient-mesh backdrop on every marketing hero — cream/orange/lavender/indigo/ruby horizontally washed across the upper third of the page.
-- Single-indigo CTA hierarchy: filled `{colors.primary}` pill is the only filled button on marketing surfaces.
-- Sohne thin (weight 300) display tier with negative tracking from -1.4px to -0.2px depending on size.
-- Tabular-figure body type (`tnum`) for any cell containing money or numerics — the brand's quiet financial-data signal.
-- Dark-app dashboard track: deep navy product UI mockups sit composited above the white canvas, frequently with rendered code or dashboard tables inside.
-- Pill-shaped buttons (`{rounded.pill}` 9999px) with tight `8px 16px` padding — short, decisive, transactional.
-- Cream-band feature cards (`{colors.canvas-cream}`) introduce a warm interlude between blue/white sections without breaking the brand's chromatic logic.
+- Literal page frame: every page sits inside a `{colors.frame-ink}` (black) outer border ~8 px thick — the design treats the browser window as a printed picture frame
+- Flat color-block "ribbon cards" tint each product family with a dedicated catalog color (`{colors.tint-sage}` Latitude, `{colors.tint-salmon}` OptiPlex GX, `{colors.tint-periwinkle}` PowerEdge, `{colors.tint-sky}` Dellware, etc.) — no gradients, no shadows, no opacity
+- Chunky display typography in `{typography.display}` (Arial Black 36 / weight 900) for section title blocks; `{typography.heading-2}` (Helvetica Bold 16) for product row titles; `{typography.body}` Times Roman 14 for everything else
+- Hand-cut GIF "stickers" overlay the layout: yellow "BUY a DELL" tab in the top right, angled "NEW!" bursts on new product rows, round red PC Magazine Readers' Choice seals
+- `{colors.primary}` (Dell red) reserved for two things only: the homepage CTA panel and the top-right phone number — never decorative
+- Footer icon-nav with classic-blue (`{colors.link}` #0000ee) anchor underlines — the unmistakable Netscape 3.x link colour
 
 ## Colors
 
-> **Source pages:** home (`/`), `/payments`, `/pricing`, `dashboard.stripe.com/register/payments`.
-
 ### Brand & Accent
-- **Indigo** (`{colors.primary}` — `#533afd`): The brand's signature CTA color. Filled-pill button, link emphasis, gradient anchor.
-- **Indigo Deep** (`{colors.primary-deep}` — `#4434d4`): A deeper indigo used in gradient mid-stops and as the press-state warmer alternative.
-- **Indigo Press** (`{colors.primary-press}` — `#2e2b8c`): Pressed-state lift of the primary.
-- **Indigo Soft** (`{colors.primary-soft}` — `#665efd`): A lighter indigo used in product-UI accents and chart highlights.
-- **Indigo Subdued** (`{colors.primary-bg-subdued-hover}` — `#b9b9f9`): Pale indigo fill used as soft tag background.
-- **Brand Dark 900** (`{colors.brand-dark-900}` — `#1c1e54`): The deep navy used on the featured pricing tier and dashboard chrome.
-- **Ruby** (`{colors.ruby}` — `#ea2261`): Gradient accent and chart highlight; never a button.
-- **Magenta** (`{colors.magenta}` — `#f96bee`): Brighter pink stop in gradient meshes.
-- **Lemon** (`{colors.lemon}` — `#9b6829`): Warm sherbet stop in gradient backdrops.
+- **Dell Red** (`{colors.primary}` — #e91d2a): The brand's signature red. Reserved for the homepage CTA panel ("At Dell.com, we'll help you find the right system…"), the top-right phone number, and the PC Magazine Readers' Choice seal ring. Never used as a card body fill.
+- **Dell Yellow** (`{colors.yellow-sticker}` — #fcc20f): Sticker yellow — the "BUY a DELL" tab in the top banner, and the angled "NEW!" bursts overlapping new product rows.
+- **Dell Purple** (`{colors.purple-stripe}` — #6a26a4): The accent stripe behind the lowercase ".com" / "DELL" wordmark text — appears inside the "BUY a DELL" sticker chrome only.
 
 ### Surface
-- **Canvas** (`{colors.canvas}` — `#ffffff`): Default page background.
-- **Canvas Soft** (`{colors.canvas-soft}` — `#f6f9fc`): Cool-tinted off-white used on feature bands beneath the gradient hero.
-- **Canvas Cream** (`{colors.canvas-cream}` — `#f5e9d4`): Warm cream used as a feature-band fill — the brand's chromatic interlude.
-- **Hairline** (`{colors.hairline}` — `#e3e8ee`): 1px borders on cards and tables.
-- **Hairline Input** (`{colors.hairline-input}` — `#a8c3de`): Slightly cooler hairline used on form inputs.
+- **Frame Ink** (`{colors.frame-ink}` — #000000): Pure black. The page frame, the top banner background, button fills, and all 1 px ribbon-card hairlines.
+- **Canvas** (`{colors.canvas}` — #ffffff): True white inside the frame. The page surface, the ribbon-card title-bar fill, and the icon-label nav backdrop.
 
 ### Text
-- **Ink** (`{colors.ink}` — `#0d253d`): Default body text color across the brand. Deep navy, never pure black.
-- **Ink Secondary** (`{colors.ink-secondary}` — `#273951`): Secondary text on white.
-- **Ink Mute** (`{colors.ink-mute}` — `#64748d`): Helper text, captions, table labels.
-- **Ink Mute 2** (`{colors.ink-mute-2}` — `#61718a`): Near-equivalent to ink-mute used in nav.
-- **On Primary** (`{colors.on-primary}` — `#ffffff`): Text on indigo / dark-navy surfaces.
+- **Ink** (`{colors.ink}` — #000000): Body text, headings, link copy before visit. Pure black; no warm-near-black softening in 1996.
+- **Link** (`{colors.link}` — #0000ee): Classic Mosaic / Netscape 3.x default link blue. Underlined inline anchors ("Copyright", "(Terms of Use)", inline "from Dell's award-winning service and support teams").
 
-### Semantic
-The brand does not use a separate semantic color palette in the marketing system — error / success states live in dashboard-product UI specifically.
+### Ribbon-Card Tint Family
+Eight catalog colors, one per product line — these are the page's chromatic personality:
+- **Olive** (`{colors.tint-olive}` — #8e8a25): "DIMENSION DESKTOPS" eyebrow block
+- **Sage** (`{colors.tint-sage}` — #b3bd95): Latitude Notebooks ribbon body
+- **Salmon** (`{colors.tint-salmon}` — #d77a7a): "OPTIPLEX DESKTOP SYSTEMS" eyebrow + GX Series body
+- **Peach** (`{colors.tint-peach}` — #e6915d): Dimension card body + OptiPlex Gs body
+- **Lime** (`{colors.tint-lime}` — #c0d4a7): OptiPlex G Series body
+- **Sky** (`{colors.tint-sky}` — #9ab6c8): Dellware ribbon body
+- **Steel** (`{colors.tint-steel}` — #a5b8c0): Dimension XPS Pro ribbon body
+- **Periwinkle** (`{colors.tint-periwinkle}` — #8c9ae0): PowerEdge ribbon body
+
+The tints are saturated but not vivid — they sit just below true neutral chroma, the signature of GIF-era web-safe-palette quantization.
 
 ## Typography
 
 ### Font Family
 
-The display and UI tier is **Sohne** (proprietary, licensed from Klim Type Foundry) at weights 300 (thin) and 400 (regular). The variable font (`sohne-var`) is loaded with `font-feature-settings: "ss01"` enabled globally — the stylistic set substitutes a single-story `a` and other character variants that are part of the brand's typographic signature.
+Three system-stack families, no webfonts (webfonts didn't exist yet):
 
-When Sohne is unavailable, fall back to **SF Pro Display** at thin weights, then system-ui. For maximum brand fidelity, **Inter** (open-source) at weight 300 with `font-feature-settings: "ss01"` and `letter-spacing: -1.4px` on display sizes approximates the rhythm closely.
+- **Arial Black** (fallback: Helvetica, system-ui sans) — display headings only. The chunky stenciled section eyebrows ("DIMENSION DESKTOPS", "OPTIPLEX DESKTOP SYSTEMS") are Arial Black at weight 900, set in all-caps with normal tracking.
+- **Helvetica** (fallback: Arial, system-ui sans) — product-row titles, button labels, the top banner's "BUILD YOUR OWN COMPUTER. ONLINE." headline. Always bold (700), always all-caps.
+- **Times New Roman** (fallback: Times, serif) — body copy. Every paragraph, every caption, every inline anchor sits in default-rendered Times Roman. The serifs date the design instantly — body text on the modern web is almost never serif.
 
 ### Hierarchy
 
-| Token | Size | Weight | Line Height | Letter Spacing | Use |
-|---|---|---|---|---|---|
-| `{typography.display-xxl}` | 56px | 300 | 1.03 | -1.4px | Hero headline |
-| `{typography.display-xl}` | 48px | 300 | 1.15 | -0.96px | Section opener |
-| `{typography.display-lg}` | 32px | 300 | 1.1 | -0.64px | Card title / sub-section |
-| `{typography.display-md}` | 26px | 300 | 1.12 | -0.26px | Compact card title |
-| `{typography.heading-lg}` | 22px | 300 | 1.1 | -0.22px | Pricing tier name |
-| `{typography.heading-md}` | 20px | 300 | 1.4 | -0.2px | Section sub-heading |
-| `{typography.heading-sm}` | 18px | 300 | 1.4 | 0 | Mini-section label |
-| `{typography.body-lg}` | 16px | 300 | 1.4 | 0 | Marketing body lead |
-| `{typography.body-md}` | 15px | 300 | 1.4 | 0 | Default UI body |
-| `{typography.body-tabular}` | 14px | 300 | 1.4 | -0.42px | Money / numeric tables (uses `tnum`) |
-| `{typography.button-md}` | 16px | 400 | 1.0 | 0 | Pill button label |
-| `{typography.button-sm}` | 14px | 400 | 1.0 | 0 | Compact pill label |
-| `{typography.caption}` | 13px | 400 | 1.4 | -0.39px | Helper, table labels |
-| `{typography.micro}` | 11px | 300 | 1.4 | 0 | Fine print |
-| `{typography.micro-cap}` | 10px | 400 | 1.15 | 0.1px | All-caps eyebrow |
+| Token | Size | Weight | Line Height | Use |
+|---|---|---|---|---|
+| `{typography.display}` | 36px | 900 | 1.0 | Section eyebrow titles ("DIMENSION DESKTOPS", "OPTIPLEX DESKTOP SYSTEMS") |
+| `{typography.heading-1}` | 24px | 900 | 1.05 | Sub-page hero headlines |
+| `{typography.heading-2}` | 16px | 700 | 1.2 | Top banner copy, product-line H1 ("Reliable PC's for High-Performance Computing.") |
+| `{typography.heading-3}` | 14px | 700 | 1.2 | Ribbon-card title bar ("OPTIPLEX GX PRO", "DIMENSION XPS") |
+| `{typography.body}` | 14px | 400 | 1.4 | Default paragraph copy, ribbon-card body, CTA-panel copy |
+| `{typography.body-sm}` | 12px | 400 | 1.4 | "This site is best viewed with browser versions 3.0 and higher." |
+| `{typography.caption}` | 11px | 400 | 1.35 | Footer copyright text |
+| `{typography.button}` | 12px | 700 | 1.0 | Button labels, "NEW!" sticker, BUY-a-DELL sticker |
+| `{typography.ui-label}` | 12px | 700 | 1.0 | Icon-label nav uppercase labels ("FIND", "HOME", "ONLINE STORE", "SERVICE & SUPPORT") |
 
 ### Principles
-- **Thin weight is the brand.** Display tiers always render at weight 300. Bumping to 400+ removes the brand's editorial air.
-- **Negative tracking on display.** -1.4px at 56px, scaling proportionally down to -0.2px at 20px. The negative tracking is the brand's typographic signature.
-- **Tabular figures for money.** Any cell rendering currency, transaction amounts, or numeric counts uses `font-feature-settings: "tnum"` plus a tightening tracking. The brand quietly signals its financial DNA through this micro-detail.
-- **`ss01` globally.** Apply `font-feature-settings: "ss01"` to the body element so the stylistic-set substitution is on for every text role.
+- Sans for UI, serif for body — the inverse of the modern convention, and a dead giveaway of mid-90s typography.
+- Display weights are extreme (900 / Black) and never softer. The "Dimension" / "OptiPlex" eyebrow blocks lean on the heaviest weight the font ships.
+- No letter-spacing tracking adjustments — pixel-fonts in 1996 didn't reward it. Everything is set at the browser's default kern.
+- Line-height is tight on display (1.0) and conventional on body (1.4) — a holdover from print-magazine catalog layout.
 
 ### Note on Font Substitutes
-Sohne is proprietary. Use **Inter** (open-source via Google Fonts) at weight 300 with `letter-spacing: -1.4px` and `font-feature-settings: "ss01"` for display tiers — Inter is the closest open-source analogue. For body sizes, Inter at 300 weight with `font-feature-settings: "tnum"` (where applicable) is the canonical substitute. Avoid Helvetica or system-ui defaults — they're heavier than the brand needs.
+All three families are operating-system defaults on every consumer OS shipped in 1996 (Windows 95: Arial / Times New Roman; Mac OS 7.5+: Helvetica / Times). The brand had no fallback strategy because no fallback was needed — the fonts were always present. Modern reproductions can stay on this exact stack (Arial Black / Helvetica / Times New Roman) for authenticity.
 
 ## Layout
 
 ### Spacing System
-- **Base unit**: 8px (with 2 / 4 / 12 sub-tokens for fine work).
-- **Tokens**: `{spacing.xxs}` 2px · `{spacing.xs}` 4px · `{spacing.sm}` 8px · `{spacing.md}` 12px · `{spacing.lg}` 16px · `{spacing.xl}` 24px · `{spacing.xxl}` 32px · `{spacing.huge}` 64px.
-- **Section padding**: 64–96px on marketing surfaces; 32–48px on dashboard / product surfaces.
-- **Card internal padding**: 32px on feature cards; 24px on dashboard mockups.
+
+- **Base unit**: 4 px (with 2 / 6 / 10 intermediates). 1996 page layout was driven by HTML table cell padding (`cellpadding="4"` / `cellspacing="0"`) rather than a designed scale.
+- **Tokens**: `{spacing.xxs}` 2px · `{spacing.xs}` 4px · `{spacing.s}` 6px · `{spacing.sm}` 8px · `{spacing.m}` 10px · `{spacing.md}` 12px · `{spacing.lg}` 16px · `{spacing.xl}` 20px · `{spacing.xxl}` 24px · `{spacing.section-sm}` 32px · `{spacing.section}` 40px · `{spacing.section-lg}` 48px.
+- **Card interior padding**: `{spacing.md}` 12 px vertical / `{spacing.lg}` 16 px horizontal on ribbon-card bodies.
+- **Section vertical rhythm**: `{spacing.section}` 40 px between product-ribbon stacks; `{spacing.section-sm}` 32 px between the eyebrow color block and its first ribbon-card.
 
 ### Grid & Container
-- Marketing pages center in a ~1200px container with the gradient mesh extending edge-to-edge above.
-- Pricing collapses 4-up → 2-up → 1-up at 1024 / 768 breakpoints.
-- Dashboard product mockups use their own internal grids (12-col tables, 3-col card grids) rendered as static composites.
+- Fixed-width table layout pinned around 760 px wide — the de facto 1996 standard targeting 800×600 monitors with a small scrollbar gutter.
+- Two-column outer structure: left rail (~28 %) carries the homepage icon-link grid + CTA red panel; right column (~72 %) carries the product ribbon stack.
+- No grid system in the modern sense — every section is its own `<table>` declaration with hard-coded column widths.
 
 ### Whitespace Philosophy
-The gradient mesh occupies the upper third of the page; the white canvas below is generously padded. Section gaps tend toward 96px, with content tightening to 32px on dashboard / pricing pages where users compare and act.
+Tight by modern standards. Catalog density wins over editorial breath — every pixel inside the black frame is doing work (illustration, color block, headline, body). The compensating decompression happens *inside* each ribbon card: white title bar + tinted body block + product photo notch creates internal breathing room without enlarging the overall page.
+
+### Responsive Strategy
+
+#### Breakpoints
+| Name | Width | Key Changes |
+|---|---|---|
+| Period default | 800 × 600 | Fixed 760 px layout, designed for the era's standard monitor |
+| Modern desktop | 1280+ px | Layout sits centered with generous side gutters — emulates "magazine spread in the middle of the screen" |
+| Tablet | 768 px | Black frame compresses to 4 px; ribbon-cards stack at full width inside |
+| Mobile | < 480 px | Black frame to 2 px; two-column structure collapses to single column; left rail icon grid stacks above the right-column product stack |
+
+#### Touch Targets
+1996 had no notion of touch — the original designs assume mouse-only. Modern reproductions need to widen the icon-label nav targets to 44 × 44 px minimum at mobile (the 1996 icons sat at ~24 × 24 with 8 px label below, well under modern guidelines).
+
+#### Collapsing Strategy
+- At ≤ 768 px, the homepage's left-rail icon-link grid (Online Store / Service / Why Dell? / Government / Worldwide / Order Status / Company Info / U.S. Careers) collapses from a 2 × 4 grid to a single-column stack
+- Ribbon-card right-edge product photo notch becomes a top-aligned full-width image at mobile
+- The top banner's tagline ("BUILD YOUR OWN COMPUTER. ONLINE.") shrinks one type tier; the phone number wraps below the BUY-a-DELL sticker
+- Footer icon-label nav stays 4-up at all widths — the icons are small enough to survive
+
+#### Image Behavior
+Product photos are bitmap GIFs with hand-applied bevel shadows — they were authored at fixed pixel widths (typically 80–120 px wide). The right-edge notch effect was achieved by table-cell negative spacing. Modern reproductions should keep the bevel shadow effect (it's signature) but use SVG drop-shadow or CSS `filter: drop-shadow(2px 2px 0 #000)` to recreate it crisply at high-DPI.
 
 ## Elevation & Depth
 
 | Level | Treatment | Use |
 |---|---|---|
-| 0 | Flat | Default surface |
-| 1 | `box-shadow: rgba(0,55,112,0.08) 0 1px 3px` | Card lift on white |
-| 2 | `box-shadow: rgba(0,55,112,0.08) 0 8px 24px, rgba(0,55,112,0.04) 0 2px 6px` | Floating panels, dashboard mockup chrome |
-| 3 | Gradient mesh backdrop | The brand's primary depth medium — atmospheric color rather than literal shadow |
+| 0 — Flush | No shadow, no border | Body text, copyright row, footer band background |
+| 1 — Hairline | `1px solid {colors.frame-ink}` | Ribbon-card outer edge, table-cell dividers |
+| 2 — Frame | `8px solid {colors.frame-ink}` | The page-frame border around the entire viewport |
+| 3 — Bevel | Hard-edge 1 px highlight + 1 px shadow on GIF stickers and product photos | "BUY a DELL" yellow sticker, NEW! bursts, award seals, product photographs |
+
+There are **no soft shadows** in the 1996 design — every depth cue is either a hard 1 px border or a hand-painted bevel inside a GIF. Modern reproductions that need to feel period-accurate must resist the urge to add Material-style elevation or atmospheric drop shadows.
 
 ### Decorative Depth
-The gradient mesh IS the depth system. Implemented as a layered SVG or large background image rather than CSS gradients (the actual mesh has organic blob shapes that aren't CSS-renderable). The mesh provides the brand's signature lift; literal shadows are reserved for product-UI mockups and stay subtle.
+Bevels and frames carry the entire depth vocabulary:
+- The **page frame** is the strongest depth cue — it tells the viewer "this is a contained document, not a continuous canvas."
+- **Bevels on stickers** (BUY a DELL, NEW!, PC Magazine Readers' Choice) push them forward off the page surface as if pinned on with thumbtacks.
+- **Product photographs** carry their own hand-painted bevel + drop-shadow, baked into the GIF itself.
 
 ## Shapes
 
@@ -363,167 +481,198 @@ The gradient mesh IS the depth system. Implemented as a layered SVG or large bac
 
 | Token | Value | Use |
 |---|---|---|
-| `{rounded.xs}` | 4px | Hairline tags, table chrome |
-| `{rounded.sm}` | 6px | Form inputs |
-| `{rounded.md}` | 8px | Compact cards, alerts |
-| `{rounded.lg}` | 12px | Pricing cards, feature cards |
-| `{rounded.xl}` | 16px | Dashboard product mockup chrome |
-| `{rounded.pill}` | 9999px | All buttons, tag pills |
+| `{rounded.none}` | 0px | Universal default — buttons, cards, inputs, banners, page frame, ribbon-card bodies, eyebrow blocks |
+| `{rounded.full}` | 9999px | Circular award seals (PC Magazine Readers' Choice), the round "h" sticker on the HOME icon |
+
+The 1996 design has effectively **two** radius modes: square (everything) and round (decorative seal stickers). No 4 / 8 / 12 px subtle radius tier — that vocabulary belongs to the post-Bootstrap web.
 
 ### Photography Geometry
-The brand uses **product UI mockups** more than photography. Dashboard composites render as faux IDE/terminal/dashboard chrome inside `{rounded.lg}` 12px containers with a subtle `box-shadow`. Real photography appears in customer logo strips and the rare case-study card; treated as inset 4:3 with no shadow.
+Product photos are rectangular GIFs with their own internal beveled "monitor" framing — they sit at native pixel dimensions, never scaled. Aspect ratios cluster around 4:3 (the era's standard CRT shape). Avatars don't exist on this site — staff photography was reserved for "About Dell" pages not captured in these snapshots.
 
 ## Components
 
-### Buttons
+> **No hover states documented.** Per the global no-hover policy, every component below documents Default state only.
 
-**`button-primary-pill`** — the dominant CTA system-wide.
-- Background `{colors.primary}`, text `{colors.on-primary}`, type `{typography.button-md}`, padding `{spacing.sm} {spacing.lg}` (8px 16px), rounded `{rounded.pill}` 9999px.
-- Pressed state `button-primary-pill-pressed` shifts background to `{colors.primary-press}`.
+### Frame & Banner
 
-**`button-secondary`** — outline-style alternative.
-- Background `{colors.canvas}`, text `{colors.primary}`, 1px solid `{colors.primary}` border, same pill geometry.
+**`page-frame`** — the literal black border around the entire viewport.
+- Background `{colors.frame-ink}`, padding `{spacing.sm}` 8 px on every side, no radius.
+- The page sits *inside* this border. Treat it as a non-negotiable container chrome; collapsing it on mobile is acceptable (to ~4 px), but removing it entirely loses the brand.
 
-**`button-on-dark`** — used on dashboard / dark surfaces.
-- Background `{colors.brand-dark-900}`, text `{colors.on-primary}`, same pill geometry.
+**`top-banner`** — pure-black strip running across the top with white "BUILD YOUR OWN COMPUTER. ONLINE." headline + sub-tagline, the yellow "BUY a DELL" sticker pinned at right, and the red "1-800-213-DELL" phone number.
+- Background `{colors.frame-ink}`, text `{colors.canvas}`, type `{typography.heading-2}`, padding 12 px vertical / 16 px horizontal, no radius.
 
-### Cards & Containers
+### Section Eyebrow Blocks
 
-**`card-feature-light`** — feature explanation card on white.
-- Background `{colors.canvas}`, padding `{spacing.xxl}`, rounded `{rounded.lg}` 12px, 1px `{colors.hairline}` border, optional Level 1 shadow.
+**`section-eyebrow-olive`** — large tinted color block holding the chunky stenciled section title ("DIMENSION DESKTOPS"). Used at the top of the Dimension product page.
+- Background `{colors.tint-olive}`, text `{colors.ink}`, type `{typography.display}` (Arial Black 36 / 900), padding 24 × 16, no radius.
 
-**`card-pricing`** — standard pricing tier.
-- Background `{colors.canvas}`, padding `{spacing.xxl}`, rounded `{rounded.lg}`, 1px `{colors.hairline}` border. Title `{typography.heading-lg}`, price `{typography.display-md}`, body `{typography.body-md}`, CTA pinned bottom as `button-primary-pill`.
+**`section-eyebrow-salmon`** — same chrome with the OptiPlex line's salmon-pink fill ("OPTIPLEX DESKTOP SYSTEMS").
+- Background `{colors.tint-salmon}`, otherwise identical to the olive variant.
 
-**`card-pricing-featured`** — the inverted dark featured tier.
-- Background `{colors.brand-dark-900}`, text `{colors.on-primary}`, otherwise identical structure to `card-pricing`. The deep-navy fill is the brand's distinctive featured-tier choice.
+### Ribbon Cards
 
-**`card-cream-band`** — warm interlude card.
-- Background `{colors.canvas-cream}`, text `{colors.ink}`, padding `{spacing.xxl}`, rounded `{rounded.lg}`. Used to break up the indigo / white rhythm with warmth.
+The brand's signature component. Each product-row "card" is a stack of three pieces:
+1. **`ribbon-card-title`** — white horizontal title bar with the product variant name in Helvetica Bold all-caps (e.g. "OPTIPLEX GX PRO", "DIMENSION XPS", "POWEREDGE SERVERS"). 1 px bottom border in `{colors.frame-ink}`.
+   - Background `{colors.canvas}`, text `{colors.ink}`, type `{typography.heading-3}`, padding 6 × 12, no radius.
+2. **`ribbon-card-body-<tint>`** — color-block body in one of eight tints, holding the short marketing pitch in `{typography.body}` (Times Roman 14). Padding 12 × 16. The product photograph notches into the right edge with a transparent GIF cutout.
+3. **Photo notch** — the GIF sits in the rightmost ~25 % of the row, hanging slightly above and below the body bar like a card pinned to a corkboard.
 
-**`card-dashboard-mockup`** — composited dashboard / product UI screenshot.
-- Background `{colors.canvas}`, type `{typography.body-tabular}` (with `tnum`), padding `{spacing.xl}` 24px, rounded `{rounded.lg}` 12px, Level 2 shadow. Often contains nested mini-mockups: code preview + dashboard table + chart card.
+Each tint variant is its own component entry. Pick the one that matches the product family:
 
-### Inputs & Forms
+- **`ribbon-card-body-sage`** — `{colors.tint-sage}` fill, used for Latitude Notebooks rows
+- **`ribbon-card-body-salmon`** — `{colors.tint-salmon}` fill, used for OptiPlex GX Series rows
+- **`ribbon-card-body-peach`** — `{colors.tint-peach}` fill, used for Dimension rows and OptiPlex Gs
+- **`ribbon-card-body-lime`** — `{colors.tint-lime}` fill, used for OptiPlex G Series rows
+- **`ribbon-card-body-sky`** — `{colors.tint-sky}` fill, used for Dellware rows
+- **`ribbon-card-body-steel`** — `{colors.tint-steel}` fill, used for Dimension XPS Pro rows
+- **`ribbon-card-body-periwinkle`** — `{colors.tint-periwinkle}` fill, used for PowerEdge Server rows
 
-**`text-input`** — standard form field.
-- Background `{colors.canvas}`, text `{colors.ink}`, type `{typography.body-md}`, padding `{spacing.sm} {spacing.md}` (8px 12px), rounded `{rounded.sm}` 6px, 1px `{colors.hairline-input}` border.
-- Focus state `text-input-focused`: border swaps to `{colors.primary}`.
+All seven share identical chrome: 1 px solid `{colors.frame-ink}` border, `{spacing.md}` × `{spacing.lg}` (12 × 16) padding, `{rounded.none}` (sharp corners), `{typography.body}` Times Roman 14 inside. Only the fill color changes per product family.
+
+### Call-to-Action
+
+**`cta-block-red`** — the homepage's vivid Dell-red panel ("At Dell.com, we'll help you find the right system, configure it, price it, and order it…").
+- Background `{colors.primary}`, text `{colors.on-primary}` (white), 1 px solid frame-ink border, type `{typography.body}` (Times Roman 14), padding 16 px, no radius.
+- One per page maximum. The brand's most aggressive attention-grab — never use it for anything except a top-tier sales message.
+
+**`phone-callout`** — top-right phone number ("1-800-213-DELL") rendered as red on the black banner.
+- Background `{colors.frame-ink}`, text `{colors.primary}`, type `{typography.heading-2}` Helvetica Bold 16, padding 4 × 8, no radius. Pinned to the right of the top banner on every page.
+
+### Stickers (GIF-style overlays)
+
+**`buy-a-dell-sticker`** — yellow rectangular sticker with "BUY a DELL" in Helvetica Bold, the "a" set in a small purple stripe, the "DELL" wordmark in black. Pinned to the top-right of every page.
+- Background `{colors.yellow-sticker}`, text `{colors.ink}`, 1 px black border, type `{typography.button}`, padding 4 × 8, no radius.
+
+**`new-burst-sticker`** — angled yellow burst with "NEW!" in Helvetica Bold black, overlapping the right side of new product ribbon-cards. Slight rotation (~15°) gives it the pinned-on-with-tape feel.
+- Background `{colors.yellow-sticker}`, text `{colors.ink}`, type `{typography.button}`, padding 4 × 8, no radius (rotation applied separately).
+
+**`cert-seal`** — round red award seal: center reads "PC MAGAZINE", ringed by "SERVICE · RELIABILITY · READERS' CHOICE", with an inner white field and red bordered ring. Sits on the right rail of product pages.
+- Background `{colors.primary}`, text `{colors.canvas}`, type `{typography.button}`, rounded `{rounded.full}`, 64 px size.
 
 ### Navigation
 
-**`nav-bar-on-mesh`** — top nav floating over the gradient hero.
-- Background `{colors.canvas}` (or transparent depending on scroll), text `{colors.ink}`, padding `{spacing.lg} {spacing.xl}`. Logo wordmark on the left, primary nav center, sign-in + filled `button-primary-pill` on the right.
+**`icon-label-nav`** — bottom-of-page navigation row: four hand-drawn icons (eyeglasses-FIND / house-HOME / yellow-sticker-ONLINE STORE / wrench-SERVICE & SUPPORT) connected by a thin green horizontal rule, each with an uppercase Helvetica label beneath.
+- Background `{colors.canvas}`, text `{colors.ink}`, type `{typography.ui-label}`, padding 8 px around each icon-label pair, no radius.
+- The connecting green rule is part of the GIF imagery, not a CSS border.
 
-### Pills, Tags, and Chips
+### Inputs & Buttons
 
-**`pill-tag-soft`** — subdued indigo tag.
-- Background `{colors.primary-bg-subdued-hover}`, text `{colors.primary-deep}`, type `{typography.micro-cap}`, padding `4px 8px`, rounded `{rounded.pill}`.
+**`text-input`** — bordered HTML input. White fill, 1 px solid black border, Times Roman 14 inside.
+- Background `{colors.canvas}`, text `{colors.ink}`, 1 px solid frame-ink, type `{typography.body}`, padding 4 × 6, no radius.
+- Used on the Search and "Configure & Buy" forms (not visible in these three captures but consistent with the era's HTML 3.2 form widgets).
 
-### Signature Components
+**`button-primary`** — black filled button with white Helvetica Bold uppercase label.
+- Background `{colors.frame-ink}`, text `{colors.on-primary}`, 1 px solid frame-ink, type `{typography.button}`, padding 6 × 16, no radius.
 
-**Gradient Mesh Backdrop** — pastel cream → sherbet orange → lavender → indigo → ruby pink stops blurred horizontally across the upper third of the page. Implemented as SVG or a large background image — not a flat CSS gradient (the real mesh has organic blob shapes).
+**`button-secondary`** — white filled outlined button. Same chrome with inverted colours.
+- Background `{colors.canvas}`, text `{colors.ink}`, 1 px solid frame-ink, type `{typography.button}`, padding 6 × 16, no radius.
 
-**Composited Dashboard Mockup** — multi-layer faux-product-UI compositions: an IDE panel on the left, a dashboard table center, a chart card on the right, all rendered at small scale inside `{rounded.lg}` containers with subtle Level 2 shadows. The composite is the brand's most-photographed feature.
+**`button-text-link`** — bare underlined anchor in classic-Mosaic blue.
+- Text `{colors.link}` #0000ee, type `{typography.link}` Times Roman 14, underline on default. No padding, no radius.
 
-**Tabular-Figure Money Type** — every number rendering money, count, or transaction value uses `font-feature-settings: "tnum"`. The brand's quiet signal that it's a financial-infrastructure platform.
+### Footer
 
-**`link-on-light`** — inline links on light surfaces.
-- Text `{colors.primary}` rendered in `{typography.body-md}`, no underline by default.
+**`footer-band`** — the bottom of every page: icon-label nav row, classic-blue Copyright link, "(Terms of Use)" parenthetical, browser-compatibility small print, and the Microsoft BackOffice / Internet Explorer logo banners.
+- Background `{colors.canvas}`, text `{colors.ink}`, 1 px top border in frame-ink, type `{typography.body-sm}`, padding 16 px.
 
-**`footer-light`** — site-wide footer.
-- Background `{colors.canvas}`, text `{colors.ink-mute}`, type `{typography.caption}`, padding `{spacing.huge} {spacing.xl}` (64px 24px). Holds 4–6 columns of link groups, social icons, and a small legal row.
+### Examples (illustrative)
+
+> Auto-derived kit-mirror demonstration surfaces (`scripts/derive-examples-block.mjs`). Each `ex-*` entry references brand-native primitives so downstream consumers (`/preview-design`, `/generate-kit`) re-skin the same 10 surfaces consistently. `TO_FILL` markers indicate missing primitives — resolve in the LLM judgment pass.
+
+**`ex-pricing-tier`** — Default Pricing tier card. Re-uses feature-card chrome with the base white surface.
+- Properties: `backgroundColor`, `textColor`, `borderColor`, `rounded`, `padding`
+
+**`ex-pricing-tier-featured`** — Featured/highlighted tier — polarity-flipped surface (dark fill + light text in light mode, light fill + dark text in dark mode).
+- Properties: `backgroundColor`, `textColor`, `rounded`, `padding`
+
+**`ex-product-selector`** — What's Included summary card — re-purposed for SaaS / B2B verticals (NOT a literal product gallery).
+- Properties: `backgroundColor`, `rounded`, `padding`
+
+**`ex-cart-drawer`** — Subscription summary — re-purposed for SaaS / B2B (line items per add-on, not literal cart).
+- Properties: `backgroundColor`, `rounded`, `padding`, `item-divider`
+
+**`ex-app-shell-row`** — Sidebar nav row inside the App Shell example. Active state uses brand primary as the indicator.
+- Properties: `backgroundColor`, `activeIndicator`, `rounded`, `padding`
+
+**`ex-data-table-cell`** — Default data-table th + td chrome. Header uses mono-caps eyebrow typography; body uses body-sm.
+- Properties: `headerBackground`, `headerTypography`, `bodyTypography`, `cellPadding`, `rowBorder`
+
+**`ex-auth-form-card`** — Sign-in / sign-up card. Re-uses feature-card chrome with text-input primitives inside.
+- Properties: `backgroundColor`, `rounded`, `padding`
+
+**`ex-modal-card`** — Modal dialog surface — same chrome as feature-card with elevated shadow.
+- Properties: `backgroundColor`, `rounded`, `padding`
+
+**`ex-empty-state-card`** — Empty-state illustration frame.
+- Properties: `backgroundColor`, `rounded`, `padding`, `captionTypography`
+
+**`ex-toast`** — Toast notification surface — feature-card shape + medium shadow.
+- Properties: `backgroundColor`, `rounded`, `padding`, `typography`
+
 
 ## Do's and Don'ts
 
 ### Do
-- Reserve `{colors.primary}` for filled CTAs and inline link emphasis — it should appear sparingly, one filled button per band.
-- Apply the gradient mesh to every marketing hero; bare-canvas heroes feel off-brand.
-- Render display tiers at weight 300 with negative letter-spacing — the thin tracking is the typographic signature.
-- Use `font-feature-settings: "tnum"` on every money / numeric cell.
-- Apply `font-feature-settings: "ss01"` globally on the body element.
-- Pair every feature explanation with a composited product UI mockup; the brand's argument is "look at the actual product."
+- Keep the literal `{components.page-frame}` black border on every page — this is the brand's single most identifiable container chrome.
+- Reserve `{colors.primary}` (Dell red) for the `{components.cta-block-red}` panel and the `{components.phone-callout}` only. Every other use dilutes the urgency signal.
+- Use the eight ribbon-card tint colors (`{colors.tint-olive}` / sage / salmon / peach / lime / sky / steel / periwinkle) as a *family* — pick one per product line and stay with it across the line's marketing surfaces.
+- Set every display headline in `{typography.display}` (Arial Black 36 / weight 900). The brand's typographic register depends on extreme weight against flat color.
+- Keep body copy in `{typography.body}` Times Roman 14 — substituting a modern sans loses the catalog feel entirely.
+- Render every CTA / button at `{rounded.none}` (0 px). Modern soft-radius buttons betray the era.
+- Use hand-painted bevels / hard-edge GIF shadows on stickers and product photos. Never substitute a soft CSS shadow.
 
 ### Don't
-- Don't bump display weight above 300 — at 400 the brand's editorial air collapses.
-- Don't add new accent colors outside the documented gradient stops (cream / orange / lavender / indigo / ruby / magenta).
-- Don't use the indigo `{colors.primary}` as a body-text color — it's a CTA and link color, not a type color at body size.
-- Don't shrink button padding below `8px 16px` — the tight pill is part of the brand's transactional feel.
-- Don't render money cells without `tnum` — it breaks the quiet financial-data signature.
-- Don't replace the pill shape with rounded-rectangles for buttons.
-
-## Responsive Behavior
-
-### Breakpoints
-
-| Name | Width | Key Changes |
-|---|---|---|
-| Wide | ≥ 1440px | Full gradient mesh edge-to-edge; dashboard composite at full scale |
-| Desktop | 1024–1440px | Default content max-width; pricing 4-up |
-| Tablet | 768–1023px | Pricing 2-up; dashboard composite simplifies to 2 panels |
-| Mobile | < 768px | Pricing 1-up; hamburger nav; display drops 56 → 36px |
-
-### Touch Targets
-- Pill buttons hit ≥ 40×40px on mobile via padding scaling. On smaller screens, buttons size up to 44×44px to maintain WCAG AAA.
-- Form fields stay at 40px minimum height.
-
-### Collapsing Strategy
-- Display tiers stair-step 56 → 48 → 32 → 26 → 22px through the breakpoints.
-- Gradient mesh re-tiles on mobile to preserve the wash without disappearing.
-- Dashboard composites simplify to single-panel mockups on mobile; the multi-layer composition only renders at desktop+.
-- Pricing tiers stair-step 4-up → 2-up → 1-up.
-
-### Image Behavior
-Product UI composites use `srcset` with art-direction crops at major breakpoints. Mobile crops focus on the most actionable inner panel; desktop crops show the full multi-layer composition.
-
-## Iteration Guide
-
-1. Focus on ONE component at a time.
-2. Reference component names and tokens directly (`{colors.primary}`, `{button-primary-pill}-pressed`, `{rounded.pill}`).
-3. Run `npx @google/design.md lint DESIGN.md` after edits.
-4. Add new variants as separate entries.
-5. Default body to `{typography.body-md}` (15px); use `{typography.body-tabular}` for any money / numeric cell.
-6. Apply `ss01` globally on the body; apply `tnum` per-element on numeric content.
-7. The gradient mesh is non-negotiable on marketing heroes — bare-canvas heroes break the brand.
+- Don't introduce a chromatic accent outside the eight catalog tints + Dell red + Dell yellow + classic link blue. The palette is closed by design.
+- Don't soften any corner. `{rounded.none}` is the universal modifier; only award seals get `{rounded.full}`.
+- Don't replace Times Roman body with Arial / Helvetica / Inter / a webfont — the serif body is the era's signature.
+- Don't add soft drop-shadows or atmospheric gradients. The brand has hard borders and flat fills; everything else reads as anachronism.
+- Don't crop or "tuck" product photos with `border-radius` or `clip-path`. The notch into the ribbon-card right edge is the framing — the photo itself stays a hard rectangle.
+- Don't pair two `{components.cta-block-red}` panels on the same page. The red fill is meant to be the singular attention pole.
+- Don't strip the `{components.phone-callout}` from the top banner. In 1996 the website existed to drive phone-call orders; the phone number IS the navigation.
 
 ---
 
 ## Project Adaptation — Tasfiye (fund liquidation tracker)
 
-This project is a **product surface, not a marketing site**: a list of former TEFAS funds,
-each showing one current liquidation value. No charts, no historical series. The rules below
-override the marketing-oriented parts of the system above.
+This project is a **public record, not a catalog**: a list of 47 liquidated TEFAS funds and
+what they last reported holding. The rules below override the sales-oriented parts of the
+system above. Where the two disagree, this section wins.
 
 ### Overrides
-- **No gradient mesh.** It is a marketing-hero device. Pages open on `{colors.canvas}` with a
-  plain header band on `{colors.canvas-soft}`. Ignore the "gradient mesh is non-negotiable" rule —
-  it applies to marketing heroes only.
-- **Display weight 300 stays**, but money is the exception: the primary value per fund renders at
-  `{typography.display-lg}` (32px) weight **400**, `tnum`, tracking -0.64px. Thin display weight
-  at large numeric sizes reads as fragile for balances.
-- **No composited product mockups.** The real table is the hero.
-- **Semantic palette added.** The source system defers semantics to product UI; this project needs
-  liquidation status, so define:
-  - `status-pending` — `#9b6829` (lemon) on `#f5e9d4` (canvas-cream) pill
-  - `status-liquidating` — `#4434d4` (primary-deep) on `#b9b9f9` (primary-subdued) pill
-  - `status-settled` — `#0d253d` (ink) on `#f6f9fc` (canvas-soft) pill
-  - `status-halted` — `#ea2261` (ruby) on `#ffffff` with a 1px ruby hairline
-  Ruby is allowed here as a status foreground only — never as a button fill.
+- **The phone callout keeps its slot, not its content.** In 1996 the top-right red callout on
+  black was the ordering phone number. This site has nothing to sell, so the callout carries
+  the thing a reader would otherwise have to go looking for: the SPK bulletin number and date
+  that put these funds into liquidation. The component chrome (`{colors.frame-ink}` fill,
+  `{colors.primary}` text, Helvetica Bold 16, pinned right of the banner) is unchanged.
+- **One `{components.cta-block-red}`, used for the disclaimer.** The red panel is the page's
+  single attention pole, and the most important thing on this page is a warning: the figures
+  shown are last reported portfolio values, *not* liquidation amounts. That is the message the
+  red gets. No second red panel anywhere, and never on a number.
+- **`{components.new-burst-sticker}` becomes the pending badge.** The yellow sticker is the
+  only decorative device in the system, and the liquidation column needs a badge for every
+  one of the 47 rows. `BEKLEMEDE` is set in the sticker chrome, unrotated in the table (47
+  tilted stickers would be noise) and rotated only on the single headline instance.
+- **Tint assignment is by section, not by product line.** There are no product families here,
+  so the eight catalog tints are assigned one per stable section — olive to the masthead,
+  sage/salmon/periwinkle to the three headline figures, and lime/sky/steel/peach across the
+  four holdings classes, in fixed order. A section never changes tint between renders.
+- **No product-photo notch.** There is no photography in this project. The right edge of each
+  ribbon card carries its figure instead, which is what the notch was structurally doing —
+  giving the card a heavy right-hand anchor.
 
 ### Core patterns
-- **Fund row / card.** Fund code in `{typography.body-md-strong}`-equivalent (Inter 400, 15px);
-  full fund name in `{typography.caption}` `{colors.ink-mute}`; liquidation value right-aligned in
-  the money tier; status pill after the value. Rows separated by 1px `{colors.hairline}`, no zebra.
-- **Money formatting.** `font-feature-settings: "tnum"` everywhere, right-aligned, currency symbol
-  in `{colors.ink-mute}` at one step down, thousands separators per tr-TR locale.
-- **"As of" stamp.** Every value carries a valuation date in `{typography.micro}` `{colors.ink-mute}`.
-  A liquidation value with no date is not trustworthy — never render one without it.
-- **Empty / unknown value** renders as an em-dash in `{colors.ink-mute}`, never `0,00`.
-- **Total row** sits above the list, not below: `{typography.display-md}` weight 400, `tnum`,
-  with a `{typography.micro-cap}` "TOPLAM TASFİYE DEĞERİ" eyebrow above it.
-- **Tone.** This is a record, not a promotion. No growth arrows, no green/red deltas, no
-  celebratory accents. One indigo CTA at most per screen.
+- **Money.** Right-aligned, `tnum`, tr-TR separators, currency suffix one step down. Figures
+  sit in Helvetica, not Times: 1996 set tabular data in the sans face and body copy in the
+  serif, and mixing them up loses the catalog look in both directions.
+- **"As of" stamp.** Every figure carries its report date in `{typography.caption}`. A value
+  with no date is not trustworthy — never render one without it.
+- **Unknown value** is an em-dash, never `0,00`.
+- **Tables are the product.** `1px solid {colors.frame-ink}` hairlines, no zebra, no hover fill
+  beyond the sage tint wash, `{typography.heading-3}` all-caps column headers on white.
+- **Tone.** A record, not a promotion. No growth arrows, no deltas, no celebratory accents.
 
 ### Fonts
-Sohne is proprietary — use **Inter** (Google Fonts) at 300 for display/body, 400 for money and
-buttons, with `font-feature-settings: "ss01"` globally and `"tnum"` on every numeric cell.
+Arial Black / Helvetica / Times New Roman, exactly as the source system specifies — all three
+ship on every modern OS, so no webfont is loaded and no substitute is needed. Linux fallbacks
+(Liberation Sans / Liberation Serif) are close metric matches.

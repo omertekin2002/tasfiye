@@ -38,15 +38,18 @@ ui/index.html                   redirect, keeps the old /ui/ link working
 
 ## `DESIGN.md`
 
-The visual system for the tracker UI, adapted from Stripe's design language. Chosen for
-its tabular-figure typography and hairline-table treatment — the product is a ledger, so
-numbers had to come first.
+The visual system for the tracker UI, adapted from Dell's 1996 catalog-era web design: a
+literal black page frame, flat tinted "ribbon cards", Arial Black display headings over
+Times Roman body copy, hand-cut sticker badges, and square corners everywhere. No webfont
+is loaded — all three families ship with the OS, as they did in 1996.
 
-The file is the upstream Stripe analysis verbatim, followed by a **Project Adaptation**
-section that overrides it for this use case: no gradient mesh (a marketing-hero device),
-heavier weight for the money tier, a semantic palette for liquidation status, a mandatory
-"as of" date on every value, and a rule that unknown values render as an em-dash rather
-than `0,00`. Where the two sections disagree, the adaptation section wins.
+The file is the upstream Dell 1996 analysis verbatim, followed by a **Project Adaptation**
+section that overrides it for this use case: the red phone callout keeps its slot but
+carries the SPK bulletin instead of a number to call, the single red panel is spent on the
+disclaimer rather than a sales pitch, the yellow `NEW!` burst is re-cut as the *Beklemede*
+badge, the eight catalog tints are assigned per section rather than per product line, and
+figures are set in the sans face while body copy stays serif. Where the two sections
+disagree, the adaptation section wins.
 
 ---
 
