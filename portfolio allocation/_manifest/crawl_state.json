@@ -25,7 +25,7 @@
  },
  "BOS": {
   "fundCode": "BOS",
-  "bulletinName": "BULLS PORTFÖY ALTINCI HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON) ________________________________________________________________________________________________________________________________________________________________________",
+  "bulletinName": "BULLS PORTFÖY ALTINCI HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON)",
   "kapTitle": "BULLS PORTFÖY ALTINCI HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON)",
   "pdrDate": "15.09.2026 16:04:41",
   "pdrIndex": 1662948,
@@ -363,7 +363,7 @@
  },
  "HKM": {
   "fundCode": "HKM",
-  "bulletinName": "HEDEF PORTFÖY BAŞAK HİSSE SENEDİ SERBEST (TL) FON (HİSSE SENEDİ YOĞUN FON) ________________________________________________________________________________________________________________________________________________________________________",
+  "bulletinName": "HEDEF PORTFÖY BAŞAK HİSSE SENEDİ SERBEST (TL) FON (HİSSE SENEDİ YOĞUN FON)",
   "kapTitle": "HEDEF PORTFÖY BAŞAK HİSSE SENEDİ SERBEST (TL) FON (HİSSE SENEDİ YOĞUN FON)",
   "pdrDate": "16.09.2026 18:17:40",
   "pdrIndex": 1664221,
@@ -572,7 +572,7 @@
  "POS": {
   "fundCode": "POS",
   "bulletinName": "PARDUS PORTFÖY ONBEŞİNCİ HİSSE SENEDİ SERBEST (TL) FON (HİSSE SENEDİ YOĞUN FON)",
-  "kapTitle": "PARDUS PORTFÖY  ONBEŞİNCİ HİSSE SENEDİ SERBEST (TL) FON (HİSSE SENEDİ YOĞUN FON)",
+  "kapTitle": "PARDUS PORTFÖY ONBEŞİNCİ HİSSE SENEDİ SERBEST (TL) FON (HİSSE SENEDİ YOĞUN FON)",
   "pdrDate": "15.09.2026 18:13:44",
   "pdrIndex": 1663184,
   "pdrPeriod": "2026/36",

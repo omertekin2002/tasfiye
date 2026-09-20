@@ -128,3 +128,38 @@ disclosures as one document.
 
 Groundwork is complete; the UI is not built yet. The liquidation values themselves are not
 here — per the SPK decision, those come from the appointed custodians, not from KAP.
+
+---
+
+## `ui/` — the tracker
+
+```bash
+python3 scripts/extract_fund_data.py     # PDFs  -> data/funds.json
+python3 -m http.server 8777              # then open http://localhost:8777/ui/
+```
+
+A single static page built to `DESIGN.md`: a ledger of the 47 funds, sortable, filterable
+by founder, with a per-row detail panel showing the portfolio breakdown as text and links
+back to the KAP filing and the source PDF. No charts — the brief calls for values, not
+performance history.
+
+The **Tasfiye Değeri** column is an em-dash and a *Beklemede* pill for every fund, because
+liquidation amounts are set by the custodian banks and are not published on KAP. The
+headline figure is therefore labelled *son bildirilen toplam portföy değeri* — last
+reported, not liquidation value — and carries the date range of the underlying reports.
+
+## `scripts/extract_fund_data.py`
+
+Reads the 47 PDFs and writes `data/funds.json`. Two things it handles that are easy to get
+silently wrong:
+
+- **Mixed decimal conventions.** The reports come in two layouts, one Turkish
+  (`2.236.787.193,97`) and one US (`881,038.37`). The separator is decided per figure from
+  whichever appears last, not assumed globally.
+- **Turkish case folding.** Python lowercases `İ` into two code points and maps `I` to `i`
+  rather than `ı`, so naive label regexes miss real filings. All matching runs against a
+  folded copy of the text with a strict 1:1 character map, and figures are read from the
+  original at the same offsets.
+
+Every row is cross-checked with `NAV ≈ unitPrice × shares` (1% tolerance) and carries a
+`verified` flag; all 47 currently pass.

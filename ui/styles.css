@@ -1,0 +1,203 @@
+/* Tokens from DESIGN.md. Light-only: the source system defines no dark palette,
+   and the Project Adaptation section does not add one. */
+:root {
+  --primary: #533afd;
+  --primary-deep: #4434d4;
+  --primary-subdued: #b9b9f9;
+  --brand-dark-900: #1c1e54;
+  --ink: #0d253d;
+  --ink-secondary: #273951;
+  --ink-mute: #64748d;
+  --on-primary: #ffffff;
+  --canvas: #ffffff;
+  --canvas-soft: #f6f9fc;
+  --canvas-cream: #f5e9d4;
+  --hairline: #e3e8ee;
+  --ruby: #ea2261;
+  --lemon: #9b6829;
+
+  --r-xs: 4px; --r-sm: 6px; --r-md: 8px; --r-lg: 12px; --r-pill: 9999px;
+  --s-xs: 4px; --s-sm: 8px; --s-md: 12px; --s-lg: 16px; --s-xl: 24px; --s-xxl: 32px; --s-huge: 64px;
+  --shadow-1: 0 1px 3px rgba(0, 55, 112, .08);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: Inter, "SF Pro Display", system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.4;
+  font-feature-settings: "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Money and every numeric cell. Tabular figures are non-negotiable in this system. */
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "ss01", "tnum";
+  text-align: right;
+  white-space: nowrap;
+}
+.cur { color: var(--ink-mute); font-size: .85em; margin-left: 3px; }
+.dash { color: var(--ink-mute); }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--s-xl); }
+@media (max-width: 640px) { .wrap { padding: 0 var(--s-lg); } }
+
+/* ---------- masthead ---------- */
+.masthead {
+  background: var(--canvas-soft);
+  border-bottom: 1px solid var(--hairline);
+  padding: var(--s-xxl) 0 var(--s-xl);
+}
+.eyebrow {
+  font-size: 10px; font-weight: 400; letter-spacing: .1px;
+  text-transform: uppercase; color: var(--ink-mute);
+  font-feature-settings: "ss01";
+}
+h1 {
+  font-size: 32px; font-weight: 300; letter-spacing: -.64px;
+  line-height: 1.1; margin: var(--s-sm) 0 var(--s-xs);
+}
+.lede { color: var(--ink-mute); font-size: 15px; max-width: 62ch; margin: 0; }
+.lede a { color: var(--primary); text-decoration: none; }
+.lede a:hover { text-decoration: underline; }
+
+/* ---------- headline total (sits ABOVE the list, per the adaptation) ---------- */
+.totals {
+  display: flex; flex-wrap: wrap; gap: var(--s-huge);
+  padding: var(--s-xl) 0 var(--s-lg);
+}
+.total-block { min-width: 200px; }
+.total-value {
+  font-size: 26px; font-weight: 400; letter-spacing: -.26px;
+  margin-top: var(--s-xs);
+  font-variant-numeric: tabular-nums; font-feature-settings: "ss01", "tnum";
+}
+.total-value.pending { color: var(--ink-mute); font-weight: 300; }
+.asof { font-size: 11px; font-weight: 300; color: var(--ink-mute); margin-top: 2px; }
+
+/* ---------- controls ---------- */
+.controls {
+  display: flex; gap: var(--s-md); align-items: center; flex-wrap: wrap;
+  padding-bottom: var(--s-lg);
+}
+input[type="search"] {
+  font: inherit; font-size: 15px; color: var(--ink);
+  background: var(--canvas); border: 1px solid #a8c3de; border-radius: var(--r-sm);
+  padding: var(--s-sm) var(--s-md); min-width: 260px;
+}
+input[type="search"]:focus { outline: none; border-color: var(--primary); }
+select {
+  font: inherit; font-size: 14px; color: var(--ink); background: var(--canvas);
+  border: 1px solid #a8c3de; border-radius: var(--r-sm); padding: var(--s-sm) var(--s-md);
+}
+.count { font-size: 13px; color: var(--ink-mute); margin-left: auto; font-feature-settings: "ss01","tnum"; }
+
+/* ---------- ledger ---------- */
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  font-size: 10px; font-weight: 400; letter-spacing: .1px; text-transform: uppercase;
+  color: var(--ink-mute); text-align: left;
+  padding: var(--s-sm) var(--s-md); border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+thead th.r { text-align: right; }
+thead th[data-sort] { cursor: pointer; user-select: none; }
+thead th[data-sort]:hover { color: var(--ink); }
+thead th .arrow { opacity: .45; font-size: 9px; }
+
+/* hairline separators, no zebra */
+tbody tr { border-bottom: 1px solid var(--hairline); }
+tbody tr.row { cursor: pointer; }
+tbody tr.row:hover { background: var(--canvas-soft); }
+tbody td { padding: var(--s-md); vertical-align: baseline; }
+
+.code { font-weight: 400; font-size: 15px; letter-spacing: -.1px; }
+.fname {
+  display: block; font-size: 13px; color: var(--ink-mute);
+  letter-spacing: -.39px; max-width: 46ch;
+  overflow-wrap: anywhere;   /* a stray unbroken token must never widen the page */
+}
+.founder { font-size: 13px; color: var(--ink-mute); white-space: nowrap; }
+.val { font-size: 15px; }
+.unit { font-size: 14px; letter-spacing: -.42px; }
+.date { font-size: 13px; color: var(--ink-mute); letter-spacing: -.39px; white-space: nowrap; }
+
+.pill {
+  display: inline-block; border-radius: var(--r-pill); padding: 4px 8px;
+  font-size: 10px; font-weight: 400; letter-spacing: .1px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.pill-pending { background: var(--canvas-cream); color: var(--lemon); }
+.pill-liquidating { background: var(--primary-subdued); color: var(--primary-deep); }
+
+/* ---------- expandable detail (text only — no charts, per the brief) ---------- */
+tr.detail > td { padding: 0 var(--s-md) var(--s-lg); background: var(--canvas-soft); }
+.detail-inner {
+  display: flex; flex-wrap: wrap; gap: var(--s-huge);
+  border-left: 2px solid var(--primary-subdued); padding: var(--s-md) 0 var(--s-md) var(--s-lg);
+}
+.alloc { min-width: 260px; }
+.alloc dl { display: grid; grid-template-columns: 1fr auto; gap: 2px var(--s-lg); margin: var(--s-sm) 0 0; }
+.alloc dt { font-size: 13px; color: var(--ink-secondary); }
+.alloc dd {
+  margin: 0; font-size: 13px; text-align: right;
+  font-variant-numeric: tabular-nums; font-feature-settings: "ss01","tnum";
+}
+.meta { font-size: 13px; color: var(--ink-mute); }
+.meta div { margin-bottom: var(--s-xs); }
+.meta a { color: var(--primary); text-decoration: none; }
+.meta a:hover { text-decoration: underline; }
+
+.empty { padding: var(--s-huge) 0; text-align: center; color: var(--ink-mute); }
+
+footer {
+  border-top: 1px solid var(--hairline); margin-top: var(--s-huge);
+  padding: var(--s-xxl) 0 var(--s-huge);
+  font-size: 13px; color: var(--ink-mute);
+}
+footer p { margin: 0 0 var(--s-sm); max-width: 78ch; }
+
+@media (max-width: 860px) {
+  .col-founder, .col-unit { display: none; }
+  .fname { max-width: 30ch; }
+  .totals { gap: var(--s-xl); }
+}
+
+/* Phone: a 6-column ledger cannot fit 375px without horizontal scroll, so each row
+   becomes a stacked block with its column header carried inline as a label. */
+@media (max-width: 640px) {
+  table, thead, tbody, tr, td { display: block; width: 100%; }
+  thead { display: none; }
+
+  tbody tr.row { padding: var(--s-lg) 0; }
+  tbody tr.row td { padding: 0; }
+
+  tbody tr.row td[data-label] {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: var(--s-lg); padding-top: var(--s-sm);
+  }
+  tbody tr.row td[data-label]::before {
+    content: attr(data-label);
+    font-size: 10px; letter-spacing: .1px; text-transform: uppercase;
+    color: var(--ink-mute); flex: none;
+  }
+  .fname { max-width: none; }
+  .num { text-align: right; }
+
+  tr.detail > td { padding: 0 0 var(--s-lg); }
+  .detail-inner { gap: var(--s-xl); padding-left: var(--s-md); }
+  .alloc { min-width: 0; width: 100%; }
+
+  .controls { gap: var(--s-sm); }
+  input[type="search"] { min-width: 0; flex: 1 1 100%; }
+  .count { margin-left: 0; }
+  h1 { font-size: 28px; }
+}
