@@ -379,8 +379,8 @@
   "shares": 538086024.0,
   "unitPrice": 1.612076,
   "verified": true,
-  "reportPeriod": null,
-  "reportDate": null,
+  "reportPeriod": "2026/8",
+  "reportDate": "04.09.2026",
   "sourceUrl": "https://www.kap.org.tr/tr/Bildirim/1659086",
   "file": "BPZ_BPZ_2026.08.pdf",
   "allocation": {
@@ -578,8 +578,8 @@
   "shares": 68157634.0,
   "unitPrice": 2.556111,
   "verified": true,
-  "reportPeriod": null,
-  "reportDate": null,
+  "reportPeriod": "2026/36",
+  "reportDate": "15.09.2026",
   "sourceUrl": "https://www.kap.org.tr/tr/Bildirim/1662950",
   "file": "BMU_BMU Haftalık Fon Portföy Dağılım Raporu.pdf",
   "allocation": {

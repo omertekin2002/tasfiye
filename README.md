@@ -62,14 +62,11 @@ two reporting cadences, which matters when comparing funds side by side:
 
 | period filed | funds | covers |
 |---|---|---|
-| 2026 week 35–37 | 34 | weekly — late August to mid-September |
-| 2026 month 8 | 11 | monthly — August |
-| period not set by KAP | 2 | August 2026 per the filing itself |
+| 2026 week 35–37 | 35 | weekly — late August to mid-September |
+| 2026 month 8 | 12 | monthly — August |
 
-The weekly filers are the freshest data in the set, some within days of liquidation. The
-two undated rows are not missing data — KAP simply left the period fields unpopulated on
-those filings; `pdrPeriod` reflects what the API returned rather than a value inferred
-from the filename.
+The weekly filers are the freshest data in the set, some within days of liquidation.
+Every row carries a report date; `extract_fund_data.py` fails loudly if one does not.
 
 ### `<CODE>_*.pdf`
 The 47 reports, named `<fundCode>_<original KAP filename>`. All are validated,

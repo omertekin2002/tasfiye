@@ -148,6 +148,14 @@ def main():
         if not verified:
             unverified.append(r["fundCode"])
 
+    # Guard against manifest schema drift. Two records once carried publishDate /
+    # reportPeriod instead of pdrDate / pdrPeriod, and every consumer silently rendered
+    # them as unknown. A missing date must fail the build, not slip through as an em-dash.
+    undated = [r["fundCode"] for r in rows if not r["reportDate"]]
+    if undated:
+        sys.exit(f"ERROR: no reportDate for {', '.join(undated)} — check the key names "
+                 f"in _manifest/results.json (expected pdrDate)")
+
     rows.sort(key=lambda x: (-(x["nav"] or 0), x["fundCode"]))
     json.dump(rows, open(os.path.join(DATA, "funds.json"), "w"), ensure_ascii=False, indent=1)
 

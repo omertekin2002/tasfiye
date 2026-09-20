@@ -4,24 +4,24 @@
   "bulletinName": "BULLS PORTFÖY PARA PİYASASI (TL) FONU",
   "kapTitle": "BULLS PORTFÖY PARA PİYASASI (TL) FONU",
   "status": "ok",
-  "reportPeriod": "2026/8",
-  "publishDate": "04.09.2026 17:55:54",
-  "disclosureIndex": 1659086,
   "sourceUrl": "https://www.kap.org.tr/tr/Bildirim/1659086",
   "savedAs": "BPZ_BPZ_2026.08.pdf",
-  "bytes": 70357
+  "bytes": 70357,
+  "pdrDate": "04.09.2026 17:55:54",
+  "pdrPeriod": "2026/8",
+  "pdrIndex": 1659086
  },
  "BMU": {
   "fundCode": "BMU",
   "bulletinName": "BULLS PORTFÖY MUTLAK GETİRİ HEDEFLİ HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON)",
   "kapTitle": "BULLS PORTFÖY MUTLAK GETİRİ HEDEFLİ HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON)",
   "status": "ok",
-  "reportPeriod": "2026/36",
-  "publishDate": "15.09.2026 16:05:25",
-  "disclosureIndex": 1662950,
   "sourceUrl": "https://www.kap.org.tr/tr/Bildirim/1662950",
   "savedAs": "BMU_BMU Haftalık Fon Portföy Dağılım Raporu.pdf",
-  "bytes": 69363
+  "bytes": 69363,
+  "pdrDate": "15.09.2026 16:05:25",
+  "pdrPeriod": "2026/36",
+  "pdrIndex": 1662950
  },
  "BOS": {
   "fundCode": "BOS",
