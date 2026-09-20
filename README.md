@@ -27,7 +27,8 @@ portfolio allocation/
   <CODE>_*.pdf                  47 allocation reports
   _manifest/                    provenance and crawler state
 data/funds.json                 extracted figures, read by the UI
-ui/                             the tracker page (index.html, styles.css, app.js)
+index.html, styles.css, app.js  the tracker page, served at the site root
+ui/index.html                   redirect, keeps the old /ui/ link working
 ```
 
 ---
@@ -127,12 +128,19 @@ disclosures as one document.
 
 ---
 
-## `ui/` — the tracker
+## The tracker
+
+Live at **https://omertekin2002.github.io/tasfiye/**, served by GitHub Pages straight from
+the repo root. Locally:
 
 ```bash
 python3 scripts/extract_fund_data.py     # PDFs  -> data/funds.json
-python3 -m http.server 8777              # then open http://localhost:8777/ui/
+python3 -m http.server 8777              # then open http://localhost:8777/
 ```
+
+`.nojekyll` is required, not cosmetic: Pages runs Jekyll by default, which skips any
+directory beginning with an underscore — that would make `portfolio allocation/_manifest/`
+unreachable on the live site.
 
 A single static page built to `DESIGN.md`: a ledger of the 47 funds, sortable, filterable
 by founder, with a per-row detail panel showing the portfolio breakdown as text and links

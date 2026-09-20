@@ -76,7 +76,7 @@
               <div>Rapor dönemi: ${x.reportPeriod || "—"}</div>
               <div><a href="${x.sourceUrl}" target="_blank" rel="noopener">KAP bildirimi</a>
                 &middot;
-                <a href="../portfolio allocation/${encodeURIComponent(x.file)}" target="_blank" rel="noopener">PDF</a></div>
+                <a href="portfolio%20allocation/${encodeURIComponent(x.file)}" target="_blank" rel="noopener">PDF</a></div>
             </div>
           </div>
         </td>
@@ -136,7 +136,7 @@
   qEl.addEventListener("input", () => { expanded = null; render(); });
   founderEl.addEventListener("change", () => { expanded = null; render(); });
 
-  fetch("../data/funds.json")
+  fetch("data/funds.json")
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((d) => { funds = d; totals(); render(); })
     .catch((err) => {
