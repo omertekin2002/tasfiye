@@ -21,8 +21,10 @@
   let expanded = null;
 
   // An unknown figure is an em-dash, never 0,00 — the design system is explicit about this.
+  // One element, not a bare text node plus a span: the stacked phone layout lays each
+  // cell out as a flex row, which would otherwise push "TL" to the far right edge.
   const money = (v) => v == null ? '<span class="dash">—</span>'
-    : `${TL.format(v)}<span class="cur">TL</span>`;
+    : `<span class="money">${TL.format(v)}<span class="cur">TL</span></span>`;
 
   function render() {
     const q = qEl.value.trim().toLocaleLowerCase("tr-TR");
