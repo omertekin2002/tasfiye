@@ -146,12 +146,13 @@ em { font-style: italic; }
 .tabs { display: flex; gap: var(--s-s); border-bottom: 1px solid var(--frame-ink); }
 .tab {
   font-family: var(--sans); font-size: 12px; font-weight: 700; line-height: 1;
-  color: var(--ink); background: var(--canvas);
+  color: var(--on-primary); background: var(--frame-ink);
   border: 1px solid var(--frame-ink); border-bottom: 0;
   padding: var(--s-m) var(--s-lg);
   margin-bottom: -1px; cursor: pointer;
 }
-.tab[aria-selected="true"] { background: var(--frame-ink); color: var(--on-primary); }
+/* the open tab is white and covers the rule beneath it, so it joins the page below */
+.tab[aria-selected="true"] { background: var(--canvas); color: var(--ink); }
 .tab:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 
 /* ---------- headline figures as ribbon cards ----------
