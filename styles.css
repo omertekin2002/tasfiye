@@ -35,25 +35,26 @@
    beat the UA stylesheet and un-hide filtered-out rows. */
 [hidden] { display: none !important; }
 
-html { -webkit-text-size-adjust: 100%; background: var(--frame-ink); }
+html { -webkit-text-size-adjust: 100%; background: var(--canvas); }
 
-/* ---------- the page frame: body padding IS the 8px black border ---------- */
+/* ---------- the page frame: one centred box in an 8px black border on white ---------- */
 body {
   margin: 0;
-  padding: var(--s-sm);
-  background: var(--frame-ink);
+  padding: var(--s-lg);
+  background: var(--canvas);
   color: var(--ink);
   font-family: var(--serif);
   font-size: 14px;
   line-height: 1.4;
 }
-/* the frame hugs the viewport edge at every width; on wide screens the content centres
-   inside white gutters, never black bars — the browser window is the picture frame */
+/* same chrome as the homepage's .page-frame; wider, because the ledger has six columns */
 .frame {
-  min-height: calc(100vh - 2 * var(--s-sm));
+  max-width: 1120px;
+  margin: 0 auto;
+  border: var(--s-sm) solid var(--frame-ink);
   background: var(--canvas);
 }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--s-xl); }
+.wrap { padding: 0 var(--s-xl); }
 
 /* every figure on the page: sans, tabular, right-aligned */
 .num {
@@ -74,8 +75,7 @@ em { font-style: italic; }
 .banner {
   background: var(--frame-ink);
   color: var(--canvas);
-  /* full-bleed black strip, contents aligned with the 1120px column below */
-  padding: var(--s-md) max(var(--s-lg), calc((100% - 1120px) / 2 + var(--s-xl)));
+  padding: var(--s-md) var(--s-lg);
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--s-lg); flex-wrap: wrap;
 }
@@ -114,8 +114,8 @@ em { font-style: italic; }
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: var(--s-xl);
-  /* auto sides keep .wrap's centring; vertical rhythm set here */
-  margin: var(--s-xl) auto var(--s-sec-sm);
+  /* margin, not padding: .wrap's padding shorthand would zero it */
+  margin: var(--s-xl) 0 var(--s-sec-sm);
   align-items: start;
 }
 .hero { grid-column: 2; grid-row: 1; }
@@ -387,6 +387,15 @@ footer {
 .fineprint { margin: var(--s-md) 0 0; font-size: 11px; line-height: 1.35; }
 
 /* ---------- responsive: the frame narrows, nothing else softens ---------- */
+@media (max-width: 768px) {
+  body { padding: var(--s-sm); }
+  .frame { border-width: var(--s-xs); }
+}
+@media (max-width: 480px) {
+  body { padding: 0; }
+  .frame { border-width: var(--s-xxs); }
+}
+
 @media (max-width: 860px) {
   .totals, #hTally { grid-template-columns: 1fr 1fr; }
   .col-founder, .col-unit { display: none; }
@@ -398,7 +407,6 @@ footer {
 }
 
 @media (max-width: 640px) {
-  body { padding: var(--s-xs); }
   .wrap { padding: 0 var(--s-md); }
   .banner { padding: var(--s-m) var(--s-md); }
   .banner-title { font-size: 14px; }
