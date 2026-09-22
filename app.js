@@ -58,7 +58,7 @@
         <td class="date" data-label="Rapor tarihi">${x.reportDate || '<span class="dash">—</span>'}</td>
         <td class="num val" data-label="Tasfiye değeri">
           ${x.liquidationValue == null
-            ? '<span class="pill pill-pending">Beklemede</span>'
+            ? '<span class="pill pill-pending">BEKLEMEDE</span>'
             : money(x.liquidationValue)}
         </td>
       </tr>` + (!open ? "" : `
