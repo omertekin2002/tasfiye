@@ -47,9 +47,10 @@ body {
   font-size: 14px;
   line-height: 1.4;
 }
-/* same chrome as the homepage's .page-frame; wider, because the ledger has six columns */
+/* same chrome as the homepage's .page-frame; 1040px is the narrowest the six-column ledger
+   holds its layout — below it the fund names start wrapping and every row grows */
 .frame {
-  max-width: 1120px;
+  max-width: 1040px;
   margin: 0 auto;
   border: var(--s-sm) solid var(--frame-ink);
   background: var(--canvas);
